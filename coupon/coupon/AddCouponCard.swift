@@ -9,6 +9,11 @@ import SwiftUI
 
 struct AddCouponCard: View {
     var body: some View {
-        Text("これはAddCouponCardです。")
+        NavigationStack{
+            VStack{
+                Text("クーポン追加画面")
+            }
+            .navigationTitle("クーポンを追加する")
+        }
     }
 }

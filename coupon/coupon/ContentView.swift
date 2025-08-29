@@ -9,17 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        NavigationStack{
-            TabView{
-                CouponListView()
-                    .tabItem{
-                        Text("List")
-                    }
-                AddCouponCard()
-                    .tabItem{
-                        Text("Add")
-                    }
-            }
+        TabView{
+            CouponListView()
+                .tabItem{
+                    Text("List")
+                }
+            AddCouponCard()
+                .tabItem{
+                    Text("Add")
+                }
         }
     }
 }

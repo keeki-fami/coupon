@@ -9,8 +9,11 @@ import SwiftUI
 
 struct CouponListView: View {
     var body: some View {
-        VStack{
-            Text("これはCouponListViewです")
+        NavigationStack{
+            VStack{
+                Text("これはCouponListViewです")
+            }
+            .navigationTitle("クーポン")
         }
     }
 }
