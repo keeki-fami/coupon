@@ -44,10 +44,27 @@ struct ImagePicker: UIViewControllerRepresentable{
     }
 }
 
-func recognizeText(from image: UIImage) {
+func recognizeText(from image: UIImage, recognizedText: Binding<String>) {
     guard let cgImage = image.cgImage else { return }
 
     let request = VNRecognizeTextRequest { request, error in
+        if let error = error {
+            print("error:\(error)")
+            return
+        }
+        
+        // OCR結果を observation として取得
+        guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
+
+        // 認識された文字列を配列に変換
+        let recognizedStrings: [String] = observations.compactMap { observation in
+            // 候補の中で一番精度が高い文字列を取得
+            return observation.topCandidates(1).first?.string
+        }
+
+        // 1つの文字列として結合
+        let resultText = recognizedStrings.joined(separator: "\n")
+        print("resultText:\(resultText)")
         // OCR結果処理
     }
 

@@ -38,7 +38,7 @@ struct AddCouponCard: View {
             .sheet(isPresented: $isPickerPresented) {
                 ImagePicker(image: $selectedImage, onImagePicked: { image in
                     print("recognizeTextを呼び出しました")
-                    recognizeText(from: image)
+                    recognizeText(from: image, recognizedText: $recognizedText)
                 })
             }
         }
