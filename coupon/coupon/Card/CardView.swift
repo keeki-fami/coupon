@@ -49,15 +49,15 @@ struct CardView: View {
                     Spacer()
                     VStack{
                         HStack{
-                            Image(systemName:"globe")
-                            Text("サンプル１")
+                            Image(systemName:"clock.fill")
+                            Text("2025/9/15")
                                 .foregroundColor(.gray)
                                 .font(.system(size :13))
                             Spacer()
                         }
                         HStack{
-                            Image(systemName:"globe")
-                            Text("サンプル１")
+                            Image(systemName:"mappin.circle.fill")
+                            Text("セブンイレブン")
                                 .foregroundColor(.gray)
                                 .font(.system(size :13))
                             Spacer()

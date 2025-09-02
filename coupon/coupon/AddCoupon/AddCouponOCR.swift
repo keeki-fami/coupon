@@ -65,6 +65,7 @@ func recognizeText(from image: UIImage, recognizedText: Binding<String>) {
         // 1つの文字列として結合
         let resultText = recognizedStrings.joined(separator: "\n")
         print("resultText:\(resultText)")
+        recognizedText.wrappedValue = resultText
         // OCR結果処理
     }
 
@@ -74,3 +75,5 @@ func recognizeText(from image: UIImage, recognizedText: Binding<String>) {
     let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
     try? handler.perform([request])
 }
+
+

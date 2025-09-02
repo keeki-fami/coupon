@@ -13,6 +13,7 @@ struct AddCouponCard: View {
     @State private var isPickerPresented = false
     @State private var recognizedText: String = ""
     @State private var selectedImage: UIImage?
+    @EnvironmentObject var isEditView: IsEditView
     
     var body: some View {
         NavigationStack{
@@ -39,7 +40,17 @@ struct AddCouponCard: View {
                 ImagePicker(image: $selectedImage, onImagePicked: { image in
                     print("recognizeTextを呼び出しました")
                     recognizeText(from: image, recognizedText: $recognizedText)
+                    print("text:\(recognizedText)")
                 })
+                .onDisappear(){
+                    isEditView.isEdit = true
+                }
+            }
+            .sheet(isPresented: $isEditView.isEdit) {
+                EditView(recognizedText: recognizedText)
+                    .onAppear(){
+                        print("呼び出します")
+                    }
             }
         }
     }
