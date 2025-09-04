@@ -2,7 +2,7 @@
 //  CardView.swift
 //  coupon
 //
-//  Created by 桜田聖和 on 2025/08/31.
+//  カードのView
 //
 
 import SwiftUI

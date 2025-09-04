@@ -2,7 +2,7 @@
 //  EditViewModel.swift
 //  coupon
 //
-//  Created by 桜田聖和 on 2025/09/02.
+//  正規表現を用いて、解析した文字から必要な情報を抽出する。
 //
 
 import SwiftUI

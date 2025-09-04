@@ -2,7 +2,7 @@
 //  AddCouponOCR.swift
 //  coupon
 //
-//  Created by 桜田聖和 on 2025/09/01.
+//  Visionフレームワークを持ちいた文字解析
 //
 
 import UIKit

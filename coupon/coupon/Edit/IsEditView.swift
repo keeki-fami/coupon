@@ -2,7 +2,7 @@
 //  IsEditView.swift
 //  coupon
 //
-//  Created by 桜田聖和 on 2025/09/02.
+//  編集画面トグル
 //
 
 import SwiftUI

@@ -2,7 +2,7 @@
 //  AddCouponCard.swift
 //  coupon
 //
-//  Created by 桜田聖和 on 2025/08/30.
+//  クーポン追加画面のView
 //
 
 import SwiftUI

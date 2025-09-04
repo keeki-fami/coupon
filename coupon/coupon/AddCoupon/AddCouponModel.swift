@@ -2,7 +2,7 @@
 //  AddCouponModel.swift
 //  coupon
 //
-//  Created by 桜田聖和 on 2025/09/04.
+//  クーポン（カード）のモデル
 //
 import SwiftUI
 
