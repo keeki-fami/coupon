@@ -11,9 +11,12 @@ import VisionKit
 
 struct AddCouponCard: View {
     @State private var isPickerPresented = false
+    @State private var isImageCropper = false
     @State private var recognizedText: String = ""
+    @State private var largestText: String = ""
     @State private var selectedImage: UIImage?
     @EnvironmentObject var isEditView: IsEditView
+    @State var isLoading: Bool = false
     
     var body: some View {
         NavigationStack{
@@ -37,21 +40,35 @@ struct AddCouponCard: View {
             }
             .navigationTitle("クーポンを追加する")
             .sheet(isPresented: $isPickerPresented) {
-                ImagePicker(image: $selectedImage, onImagePicked: { image in
-                    print("recognizeTextを呼び出しました")
-                    recognizeText(from: image, recognizedText: $recognizedText)
-                    print("text:\(recognizedText)")
+                ImagePicker(image: $selectedImage)
+                    .onDisappear(){
+                        isImageCropper = true
+                    }
+            }
+            .sheet(isPresented:$isImageCropper) {
+                ImageCropper(image: $selectedImage, visible: $isImageCropper, done: creppedImage, onImagePicked: { image in
+                    recognizeText(
+                        from: image,
+                        recognizedText: $recognizedText,
+                        largestText: $largestText
+                    )
                 })
                 .onDisappear(){
                     isEditView.isEdit = true
                 }
             }
             .sheet(isPresented: $isEditView.isEdit) {
-                EditView(recognizedText: recognizedText)
+                EditView(recognizedText: recognizedText,
+                         selectedImage: $selectedImage,
+                         largestText: $largestText)
                     .onAppear(){
                         print("呼び出します")
                     }
             }
         }
+    }
+    
+    func creppedImage(image: UIImage) {
+        selectedImage = image
     }
 }

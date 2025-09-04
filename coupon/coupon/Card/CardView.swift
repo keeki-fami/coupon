@@ -26,56 +26,56 @@ struct CardView: View {
 }
 
 
-    var cardView: some View{
-        ZStack{
-            HStack() {
-                Image("myFace")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width:150, height:200)
-                    .mask(alignment: .top) {
-                        LinearGradient(
-                            gradient: .init(colors: [.white, .clear]),
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                    }
+var cardView: some View{
+    ZStack{
+        HStack() {
+            Image("myFace")
+                .resizable()
+                .scaledToFill()
+                .frame(width:150, height:200)
+                .mask(alignment: .top) {
+                    LinearGradient(
+                        gradient: .init(colors: [.white, .clear]),
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                }
+            Spacer()
+            VStack(alignment:.leading, spacing:10) {
                 Spacer()
-                VStack(alignment:.leading, spacing:10) {
-                    Spacer()
-                    Text("タイトル")
-                        .font(.system(size :20))
-                        .foregroundColor(.black)
-                    Spacer()
-                    VStack{
-                        HStack{
-                            Image(systemName:"clock.fill")
-                            Text("2025/9/15")
-                                .foregroundColor(.gray)
-                                .font(.system(size :13))
-                            Spacer()
-                        }
-                        HStack{
-                            Image(systemName:"mappin.circle.fill")
-                            Text("セブンイレブン")
-                                .foregroundColor(.gray)
-                                .font(.system(size :13))
-                            Spacer()
-                        }
-                        HStack{
-                            Image(systemName:"globe")
-                            Text("サンプル１")
-                                .foregroundColor(.gray)
-                                .font(.system(size :13))
-                            Spacer()
-                        }
+                Text("タイトル")
+                    .font(.system(size :20))
+                    .foregroundColor(.black)
+                Spacer()
+                VStack{
+                    HStack{
+                        Image(systemName:"clock.fill")
+                        Text("2025/9/15")
+                            .foregroundColor(.gray)
+                            .font(.system(size :13))
+                        Spacer()
                     }
-                    Spacer()
+                    HStack{
+                        Image(systemName:"mappin.circle.fill")
+                        Text("セブンイレブン")
+                            .foregroundColor(.gray)
+                            .font(.system(size :13))
+                        Spacer()
+                    }
+                    HStack{
+                        Image(systemName:"globe")
+                        Text("サンプル１")
+                            .foregroundColor(.gray)
+                            .font(.system(size :13))
+                        Spacer()
+                    }
                 }
                 Spacer()
             }
+            Spacer()
         }
     }
+}
 
 
 #Preview{

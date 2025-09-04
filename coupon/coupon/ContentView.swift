@@ -13,11 +13,13 @@ struct ContentView: View {
         TabView{
             CouponListView()
                 .tabItem{
-                    Text("List")
+                    Image(systemName: "ticket")
+                    Text("coupon")
                 }
             AddCouponCard()
                 .tabItem{
-                    Text("Add")
+                    Image(systemName:"barcode.viewfinder")
+                    Text("scan")
                 }
         }
     }
