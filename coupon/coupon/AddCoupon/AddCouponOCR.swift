@@ -13,6 +13,7 @@ import CropViewController
 
 struct ImagePicker: UIViewControllerRepresentable{
     @Binding var image: UIImage?
+    var done:() -> Void
     
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
@@ -35,8 +36,10 @@ struct ImagePicker: UIViewControllerRepresentable{
         }
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            print("押されました。おされmした")
             if let uiImage = info[.originalImage] as? UIImage {
                 parent.image = uiImage
+                parent.done()
                 // parent.onImagePicked(uiImage)
             }
             picker.dismiss(animated: true)
@@ -61,7 +64,6 @@ struct ImageCropper: UIViewControllerRepresentable{
             self.parent = parent
         }
         
-        
         //編集完了時(done）
         func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
             
@@ -73,6 +75,7 @@ struct ImageCropper: UIViewControllerRepresentable{
         
         //cancel時
         func cropViewController(_ cropViewController: CropViewController, didFinishCancelled cancelled: Bool) {
+            print("キャンセルされました")
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 withAnimation{
                     self.parent.visible = false

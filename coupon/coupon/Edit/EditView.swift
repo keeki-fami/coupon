@@ -25,6 +25,34 @@ struct EditView: View {
                     
                     VStack(spacing:5){
                         HStack{
+                            Text("写真")
+                            Spacer()
+                        }
+                        ZStack{
+                            Rectangle()
+                                .fill(.white)
+                                .frame(maxWidth:.infinity,minHeight:200,maxHeight:200)
+                            Button(action:{
+                                print("ボタンがタップされました")
+                            },label:{
+                                ZStack{
+                                    Image(uiImage: addCouponModel.selectedImage)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 150, height: 200)
+                                    Rectangle()
+                                        .fill(.black)
+                                        .frame(width: 150, height: 200)
+                                        .opacity(0.5)
+                                    Image(systemName: "photo")
+                                }
+                            })
+                        }
+                    }
+                    .padding(10)
+                    
+                    VStack(spacing:5){
+                        HStack{
                             Text("会社名")
                             Spacer()
                         }
@@ -35,6 +63,7 @@ struct EditView: View {
                             .background(Color.white)
                     }
                     .padding(10)
+                    
                     VStack(spacing:5){
                         HStack{
                             Text("クーポン名")
@@ -47,9 +76,10 @@ struct EditView: View {
                             .background(Color.white)
                     }
                     .padding(10)
+                    
                     VStack(spacing:5){
                         HStack{
-                            Text("クーポン名")
+                            Text("備考")
                             Spacer()
                         }
                         TextEditor(text: $addCouponModel.notes)
@@ -59,6 +89,14 @@ struct EditView: View {
                             .background(Color.white)
                     }
                     .padding(10)
+                    
+                    Button(action: {
+                        
+                    }, label: {
+                        Text("追加")
+                    })
+                    .padding()
+                    
                 }
                 .navigationTitle("編集")
                 .navigationBarTitleDisplayMode(.inline)

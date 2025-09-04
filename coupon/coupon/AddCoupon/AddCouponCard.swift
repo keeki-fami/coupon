@@ -21,29 +21,27 @@ struct AddCouponCard: View {
     var body: some View {
         NavigationStack{
             VStack{
-                if let image = selectedImage {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height:200)
-                }
-                
-                TextEditor(text: $recognizedText)
-                    .frame(height: 200)
-                    .border(Color.gray)
-                
-                Button("写真を撮る") {
+                Spacer()
+                Button(action: {
                     isPickerPresented = true
                     print("写真を撮るをおしました")
+                },label: {
+                    ZStack {
+                        Rectangle()
+                            .fill(Color(red: 242/255, green: 242/255, blue: 247/255))
+                            .frame(maxWidth:.infinity, minHeight:200,maxHeight:200)
+                        Image(systemName: "camera")
+                    }
+                })
+                Spacer()
+                Button("追加の仕方") {
+                    
                 }
-                .padding()
+                Spacer()
             }
             .navigationTitle("クーポンを追加する")
             .sheet(isPresented: $isPickerPresented) {
-                ImagePicker(image: $selectedImage)
-                    .onDisappear(){
-                        isImageCropper = true
-                    }
+                ImagePicker(image: $selectedImage, done: toggleImageCropper)
             }
             .sheet(isPresented:$isImageCropper) {
                 ImageCropper(image: $selectedImage, visible: $isImageCropper, done: creppedImage, onImagePicked: { image in
@@ -53,9 +51,6 @@ struct AddCouponCard: View {
                         largestText: $largestText
                     )
                 })
-                .onDisappear(){
-                    isEditView.isEdit = true
-                }
             }
             .sheet(isPresented: $isEditView.isEdit) {
                 EditView(recognizedText: recognizedText,
@@ -70,5 +65,14 @@ struct AddCouponCard: View {
     
     func creppedImage(image: UIImage) {
         selectedImage = image
+        isEditView.isEdit = true
+    }
+    func toggleImageCropper() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            withAnimation{
+                isImageCropper = true
+            }
+        }
+        isImageCropper = true
     }
 }
