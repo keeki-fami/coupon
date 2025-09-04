@@ -101,7 +101,7 @@ struct ImageCropper: UIViewControllerRepresentable{
     
 }
 
-func recognizeText(from image: UIImage, recognizedText: Binding<String>, largestText: Binding<String>) {
+func recognizeText(from image: UIImage, recognizedText: Binding<String>, largestText: Binding<String?>) {
     guard let cgImage = image.cgImage else { return }
     let request = VNRecognizeTextRequest { request, error in
         if let error = error {

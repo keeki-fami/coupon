@@ -13,7 +13,7 @@ struct AddCouponCard: View {
     @State private var isPickerPresented = false
     @State private var isImageCropper = false
     @State private var recognizedText: String = ""
-    @State private var largestText: String = ""
+    @State private var largestText: String? = ""
     @State private var selectedImage: UIImage?
     @EnvironmentObject var isEditView: IsEditView
     @State var isLoading: Bool = false
