@@ -8,12 +8,22 @@
 import SwiftUI
 
 struct CardView: View {
+    let companyName:String?
+    let couponName:String?
+    let limit:Date?
+    let notes:String?
+    let selectedImage:Data?
+    
     var body: some View{
         Button(action: {
             // Todo:ModalViewに遷移
             print("ボタンが押されました")
         }, label: {
-            cardView
+            cardView(
+                selectedImage: selectedImage,
+                couponName: couponName,
+                companyName: companyName,
+                limit: limit)
                 .frame(width:300,height:200)
                 .cornerRadius(5)
                 .overlay(
@@ -22,62 +32,87 @@ struct CardView: View {
                 )
         })
         .contentShape(RoundedRectangle(cornerRadius: 5))
+        .onAppear(){
+            
+        }
     }
 }
 
 
-var cardView: some View{
-    ZStack{
-        HStack() {
-            Image("myFace")
-                .resizable()
-                .scaledToFill()
-                .frame(width:150, height:200)
-                .mask(alignment: .top) {
-                    LinearGradient(
-                        gradient: .init(colors: [.white, .clear]),
-                        startPoint: .leading,
-                        endPoint: .trailing
-                    )
+struct cardView: View{
+    let selectedImage:Data?
+    let couponName:String?
+    let companyName: String?
+    let limit: Date?
+    var body: some View{
+        ZStack{
+            HStack() {
+                if let imageData = selectedImage,
+                   let image = UIImage(data: imageData){
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width:150, height:200)
+                        .mask(alignment: .top) {
+                            LinearGradient(
+                                gradient: .init(colors: [.white, .clear]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        }
+                } else {
+                    Image("myface")
                 }
-            Spacer()
-            VStack(alignment:.leading, spacing:10) {
                 Spacer()
-                Text("タイトル")
-                    .font(.system(size :20))
-                    .foregroundColor(.black)
-                Spacer()
-                VStack{
-                    HStack{
-                        Image(systemName:"clock.fill")
-                        Text("2025/9/15")
-                            .foregroundColor(.gray)
-                            .font(.system(size :13))
-                        Spacer()
+                VStack(alignment:.leading, spacing:10) {
+                    Spacer()
+                    if let couponname = couponName {
+                        Text(couponname)
+                            .font(.system(size :20))
+                            .foregroundColor(.black)
+                    } else {
+                        Text("NULL")
+                            .font(.system(size :20))
+                            .foregroundColor(.black)
                     }
-                    HStack{
-                        Image(systemName:"mappin.circle.fill")
-                        Text("セブンイレブン")
-                            .foregroundColor(.gray)
-                            .font(.system(size :13))
-                        Spacer()
+                    Spacer()
+                    VStack{
+                        HStack{
+                            if let limitExact = limit,
+                               let date = dateToString(date: limitExact) {
+                                Image(systemName:"clock.fill")
+                                Text(date)
+                                    .foregroundColor(.gray)
+                                    .font(.system(size :13))
+                                Spacer()
+                            }
+                        }
+                        HStack{
+                            if let companyname = companyName {
+                                Image(systemName:"mappin.circle.fill")
+                                Text(companyname)
+                                    .foregroundColor(.gray)
+                                    .font(.system(size :13))
+                                Spacer()
+                            }
+                        }
+                        HStack{
+                            Image(systemName:"globe")
+                            Text("サンプル１")
+                                .foregroundColor(.gray)
+                                .font(.system(size :13))
+                            Spacer()
+                        }
                     }
-                    HStack{
-                        Image(systemName:"globe")
-                        Text("サンプル１")
-                            .foregroundColor(.gray)
-                            .font(.system(size :13))
-                        Spacer()
-                    }
+                    Spacer()
                 }
                 Spacer()
             }
-            Spacer()
         }
     }
 }
 
 
 #Preview{
-    CardView()
+    // CardView()
 }
