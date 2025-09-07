@@ -34,7 +34,9 @@ class AddCouponModel: ObservableObject {
         if let image = selectedImage {
             self.selectedImage = image
         }
-        
+    }
+    
+    func addCoreDataToCard() {
         
     }
 }

@@ -15,6 +15,13 @@ struct EditView: View {
     @StateObject private var addCouponModel = AddCouponModel()
     @State private var limitDate: String?
     @State private var companyName: String?
+    @EnvironmentObject var isEditView: IsEditView
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(
+        sortDescriptors: [],
+        animation: .default
+    )private var coupons: FetchedResults<CardModel>
+    
     var body: some View {
         NavigationStack{
             ZStack{
@@ -91,7 +98,8 @@ struct EditView: View {
                     .padding(10)
                     
                     Button(action: {
-                        
+                        setCoreDataToCard(addCouponModel:addCouponModel)
+                        isEditView.isEdit = false
                     }, label: {
                         Text("追加")
                     })
@@ -110,6 +118,31 @@ struct EditView: View {
                                         selectedImage:selectedImage
                 )
             }
+        }
+    }
+    
+    func setCoreDataToCard(addCouponModel: AddCouponModel) {
+        let newCard = CardModel(context: viewContext)
+        newCard.couponName = addCouponModel.couponName
+        newCard.companyName = addCouponModel.companyName
+        newCard.notes = addCouponModel.notes
+        newCard.limit = addCouponModel.limit
+        newCard.selectedImage = imageToBinary(addCouponModel.selectedImage)
+        do {
+            try viewContext.save()
+            print("画像を保存しました")
+        } catch {
+            print("保存エラー: \(error)")
+        }
+
+    }
+    
+    func imageToBinary(_ seledtedImage: UIImage?) -> Data? {
+        if let image = selectedImage,
+           let imageData = image.jpegData(compressionQuality: 0.8){
+            return imageData
+        } else {
+            return nil
         }
     }
 }
