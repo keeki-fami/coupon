@@ -21,6 +21,14 @@ class AddCouponModel: ObservableObject {
         self.notes = ""
     }
     
+    func clean() {
+        self.couponName = ""
+        self.companyName = ""
+        self.limit = Date()
+        self.selectedImage = UIImage(imageLiteralResourceName: "defaultImage")
+        self.notes = ""
+    }
+    
     func setStart(limit:String?,
                   companyName:String?,
                   couponName:String?,
@@ -34,9 +42,27 @@ class AddCouponModel: ObservableObject {
         if let image = selectedImage {
             self.selectedImage = image
         }
-    }
-    
-    func addCoreDataToCard() {
-        
+        if let limitString = limit {
+            let format = exactDateFormatter(stringDate: limitString)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = format
+            
+            if let date = dateFormatter.date(from: limitString) {
+                let calendar = Calendar.current
+                
+                let month = calendar.component(.month, from: date)
+                let day = calendar.component(.day, from: date)
+                let year = calendar.component(.year, from: Date())
+                
+                var components = DateComponents()
+                components.year = year
+                components.month = month
+                components.day = day
+                
+                if let finalDate = calendar.date(from: components) {
+                    self.limit = finalDate
+                }
+            }
+        }
     }
 }

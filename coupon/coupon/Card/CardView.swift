@@ -61,7 +61,17 @@ struct cardView: View{
                             )
                         }
                 } else {
-                    Image("myface")
+                    Image("defaultImage")
+                        .scaledToFill()
+                        .frame(width:150, height:200)
+                        .mask(alignment: .top) {
+                            LinearGradient(
+                                gradient: .init(colors: [.white, .clear]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        }
+                    
                 }
                 Spacer()
                 VStack(alignment:.leading, spacing:10) {
@@ -89,11 +99,13 @@ struct cardView: View{
                         }
                         HStack{
                             if let companyname = companyName {
-                                Image(systemName:"mappin.circle.fill")
-                                Text(companyname)
-                                    .foregroundColor(.gray)
-                                    .font(.system(size :13))
-                                Spacer()
+                                if companyname != ""{
+                                    Image(systemName:"mappin.circle.fill")
+                                    Text(companyname)
+                                        .foregroundColor(.gray)
+                                        .font(.system(size :13))
+                                    Spacer()
+                                }
                             }
                         }
                         HStack{

@@ -16,6 +16,7 @@ struct EditView: View {
     @State private var limitDate: String?
     @State private var companyName: String?
     @EnvironmentObject var isEditView: IsEditView
+    @State private var isCalendarView:Bool = false
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [],
@@ -60,6 +61,30 @@ struct EditView: View {
                     
                     VStack(spacing:5){
                         HStack{
+                            Text("期限")
+                            Spacer()
+                        }
+                        Button(action:{
+                            isCalendarView = true
+                            
+                        },label: {
+                            Text("\(dateToString(date: addCouponModel.limit) ?? "MM/dd")")
+                            Spacer()
+                        })
+                            .textFieldStyle(.plain)                // 縁なし
+                            .padding(.horizontal)                  // 内側の余白
+                            .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)            // 幅いっぱい
+                            .background(Color.white)
+                            .sheet(isPresented: $isCalendarView){
+                                CalendarView(limit: $addCouponModel.limit)
+                                    .presentationDetents([.medium])
+                                    .presentationDragIndicator(.visible)
+                            }
+                    }
+                    .padding(10)
+                    
+                    VStack(spacing:5){
+                        HStack{
                             Text("会社名")
                             Spacer()
                         }
@@ -92,7 +117,7 @@ struct EditView: View {
                         TextEditor(text: $addCouponModel.notes)
                             .textFieldStyle(.plain)                // 縁なし
                             .padding(.horizontal)                  // 内側の余白
-                            .frame(maxWidth: .infinity, minHeight: 100, maxHeight: 100)            // 幅いっぱい
+                            .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 200)            // 幅いっぱい
                             .background(Color.white)
                     }
                     .padding(10)
@@ -108,8 +133,13 @@ struct EditView: View {
                 }
                 .navigationTitle("編集")
                 .navigationBarTitleDisplayMode(.inline)
+                .onTapGesture{
+                    UIApplication.shared.closeKeyboard()
+                    print("フォーカスの変更 closeKeyboard呼び出し")
+                }
             }
             .onAppear(){
+                addCouponModel.clean()
                 limitDate = editViewModel.extractDateRange(from: recognizedText)
                 companyName = editViewModel.extractCompany(from: recognizedText)
                 addCouponModel.setStart(limit:limitDate,
@@ -144,6 +174,12 @@ struct EditView: View {
         } else {
             return nil
         }
+    }
+}
+
+extension UIApplication {
+    func closeKeyboard() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 
