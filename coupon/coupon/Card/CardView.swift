@@ -90,7 +90,7 @@ struct cardView: View{
                         HStack{
                             if let limitExact = limit,
                                let date = dateToString(date: limitExact) {
-                                Image(systemName:"clock.fill")
+                                Image(systemName:"clock")
                                 Text(date)
                                     .foregroundColor(.gray)
                                     .font(.system(size :13))
@@ -100,20 +100,13 @@ struct cardView: View{
                         HStack{
                             if let companyname = companyName {
                                 if companyname != ""{
-                                    Image(systemName:"mappin.circle.fill")
+                                    Image(systemName:"mappin.circle")
                                     Text(companyname)
                                         .foregroundColor(.gray)
                                         .font(.system(size :13))
                                     Spacer()
                                 }
                             }
-                        }
-                        HStack{
-                            Image(systemName:"globe")
-                            Text("サンプル１")
-                                .foregroundColor(.gray)
-                                .font(.system(size :13))
-                            Spacer()
                         }
                     }
                     Spacer()

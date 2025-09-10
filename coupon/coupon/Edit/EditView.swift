@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct EditView: View {
     let recognizedText: String
@@ -17,6 +18,7 @@ struct EditView: View {
     @State private var companyName: String?
     @EnvironmentObject var isEditView: IsEditView
     @State private var isCalendarView:Bool = false
+    @State private var photoPickerItem: PhotosPickerItem?
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [],
@@ -40,9 +42,7 @@ struct EditView: View {
                             Rectangle()
                                 .fill(.white)
                                 .frame(maxWidth:.infinity,minHeight:200,maxHeight:200)
-                            Button(action:{
-                                print("ボタンがタップされました")
-                            },label:{
+                            PhotosPicker(selection: $photoPickerItem) {
                                 ZStack{
                                     Image(uiImage: addCouponModel.selectedImage)
                                         .resizable()
@@ -54,7 +54,14 @@ struct EditView: View {
                                         .opacity(0.5)
                                     Image(systemName: "photo")
                                 }
-                            })
+                            }
+                            .onChange(of: photoPickerItem) { item in
+                                Task {
+                                    guard let data = try? await item?.loadTransferable(type: Data.self) else { return }
+                                    guard let uiImage = UIImage(data: data) else { return }
+                                    addCouponModel.selectedImage = uiImage
+                                }
+                            }
                         }
                     }
                     .padding(10)
@@ -167,7 +174,7 @@ struct EditView: View {
 
     }
     
-    func imageToBinary(_ seledtedImage: UIImage?) -> Data? {
+    func imageToBinary(_ selectedImage: UIImage?) -> Data? {
         if let image = selectedImage,
            let imageData = image.jpegData(compressionQuality: 0.8){
             return imageData

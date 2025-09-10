@@ -45,11 +45,17 @@ struct AddCouponCard: View {
             }
             .sheet(isPresented:$isImageCropper) {
                 ImageCropper(image: $selectedImage, visible: $isImageCropper, done: creppedImage, onImagePicked: { image in
-                    recognizeText(
-                        from: image,
-                        recognizedText: $recognizedText,
-                        largestText: $largestText
-                    )
+                    Task{
+                        
+                        isLoading = true
+                        await recognizeText(
+                            from: image,
+                            recognizedText: $recognizedText,
+                            largestText: $largestText
+                        )
+                        isLoading = false
+                        
+                    }
                 })
             }
             .sheet(isPresented: $isEditView.isEdit) {
@@ -59,6 +65,11 @@ struct AddCouponCard: View {
                     .onAppear(){
                         print("呼び出します")
                     }
+            }
+            .overlay(){
+                if isLoading {
+                    ProgressView()
+                }
             }
         }
     }
