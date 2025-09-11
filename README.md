@@ -1,5 +1,5 @@
 # coupon holder
-##　🔗リンク
+## 🔗リンク
 - note : https://note.com/towa57035260/n/nc8c47dfac8e1
 ## ⚠️注意！！
 - 未完成のアプリ。9/15の完成を目指しています
