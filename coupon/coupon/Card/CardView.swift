@@ -13,8 +13,10 @@ struct CardView: View {
     let limit:Date?
     let notes:String?
     let selectedImage:Data?
+    let deleteCard: () -> Void
     
     var body: some View{
+        
         Button(action: {
             // Todo:ModalViewに遷移
             print("ボタンが押されました")
@@ -23,7 +25,8 @@ struct CardView: View {
                 selectedImage: selectedImage,
                 couponName: couponName,
                 companyName: companyName,
-                limit: limit)
+                limit: limit,
+                deleteCard: deleteCard)
                 .frame(width:300,height:200)
                 .cornerRadius(5)
                 .overlay(
@@ -32,9 +35,8 @@ struct CardView: View {
                 )
         })
         .contentShape(RoundedRectangle(cornerRadius: 5))
-        .onAppear(){
-            
-        }
+        
+
     }
 }
 
@@ -44,6 +46,8 @@ struct cardView: View{
     let couponName:String?
     let companyName: String?
     let limit: Date?
+    let deleteCard: () -> Void
+    @State private var isAlert = false
     var body: some View{
         ZStack{
             HStack() {
@@ -108,11 +112,29 @@ struct cardView: View{
                                 }
                             }
                         }
+                        HStack{
+                            Spacer()
+                            Button(action:{
+                                isAlert = true
+                            }, label:{
+                                Image(systemName: "trash")
+                            })
+                        }
                     }
                     Spacer()
                 }
                 Spacer()
             }
+        }
+        .alert("このクーポンを削除しますか",isPresented: $isAlert) {
+            Button("削除", role: .destructive) {
+                deleteCard()
+            }
+            Button("キャンセル", role: .cancel) {
+                print("削除ボタンが押されました")
+            }
+        }message: {
+            Text("この操作は取り消せません")
         }
     }
 }

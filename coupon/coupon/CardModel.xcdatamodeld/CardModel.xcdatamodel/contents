@@ -3,6 +3,7 @@
     <entity name="CardModel" representedClassName="CardModel" syncable="YES" codeGenerationType="class">
         <attribute name="companyName" optional="YES" attributeType="String"/>
         <attribute name="couponName" optional="YES" attributeType="String"/>
+        <attribute name="identifier" optional="YES" attributeType="String"/>
         <attribute name="limit" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="selectedImage" optional="YES" attributeType="Binary"/>

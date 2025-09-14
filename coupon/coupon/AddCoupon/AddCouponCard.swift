@@ -53,13 +53,13 @@ struct AddCouponCard: View {
                             recognizedText: $recognizedText,
                             largestText: $largestText
                         )
-                        isLoading = false
+                        await displayEditView(isLoading: $isLoading)
                         
                     }
                 })
             }
             .sheet(isPresented: $isEditView.isEdit) {
-                EditView(recognizedText: recognizedText,
+                EditView(recognizedText: $recognizedText,
                          selectedImage: $selectedImage,
                          largestText: $largestText)
                     .onAppear(){
@@ -71,12 +71,23 @@ struct AddCouponCard: View {
                     ProgressView()
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing){
+                    NavigationLink(destination: BellView()) {
+                        Image(systemName: "bell")
+                    }
+                }
+            }
         }
+    }
+    
+    func displayEditView(isLoading: Binding<Bool>) async {
+        await isLoading.wrappedValue = false
+        await isEditView.isEdit = true
     }
     
     func creppedImage(image: UIImage) {
         selectedImage = image
-        isEditView.isEdit = true
     }
     func toggleImageCropper() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {

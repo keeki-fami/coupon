@@ -9,7 +9,7 @@ import SwiftUI
 import PhotosUI
 
 struct EditView: View {
-    let recognizedText: String
+    @Binding var recognizedText: String
     @Binding var selectedImage: UIImage?
     @Binding var largestText: String?
     @StateObject private var editViewModel = EditViewModel()
@@ -147,6 +147,7 @@ struct EditView: View {
             }
             .onAppear(){
                 addCouponModel.clean()
+                print("渡されたrecognizedText:\(recognizedText)")
                 limitDate = editViewModel.extractDateRange(from: recognizedText)
                 companyName = editViewModel.extractCompany(from: recognizedText)
                 addCouponModel.setStart(limit:limitDate,
@@ -155,6 +156,8 @@ struct EditView: View {
                                         selectedImage:selectedImage
                 )
             }
+            .interactiveDismissDisabled()
+            .scrollDismissesKeyboard(.interactively)
         }
     }
     
@@ -165,6 +168,16 @@ struct EditView: View {
         newCard.notes = addCouponModel.notes
         newCard.limit = addCouponModel.limit
         newCard.selectedImage = imageToBinary(addCouponModel.selectedImage)
+        
+        // identifierの作成
+        let id = genUUID()
+        newCard.identifier = id
+        
+        scheduleNotification(
+            date:addCouponModel.limit,
+            coupon:addCouponModel.couponName,
+            id:id)
+        
         do {
             try viewContext.save()
             print("画像を保存しました")
@@ -181,6 +194,11 @@ struct EditView: View {
         } else {
             return nil
         }
+    }
+    
+    func genUUID() -> String {
+        let id = UUID()
+        return id.uuidString
     }
 }
 
