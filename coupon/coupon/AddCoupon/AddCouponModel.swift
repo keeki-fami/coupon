@@ -6,6 +6,7 @@
 //
 import SwiftUI
 
+
 class AddCouponModel: ObservableObject {
     @Published var couponName: String
     @Published var companyName: String
