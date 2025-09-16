@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CardView: View {
+    @State private var isCardInfo = false
     let companyName:String?
     let couponName:String?
     let limit:Date?
@@ -18,7 +19,6 @@ struct CardView: View {
     var body: some View{
         
         Button(action: {
-            // Todo:ModalViewに遷移
             print("ボタンが押されました")
         }, label: {
             cardView(
@@ -82,12 +82,12 @@ struct cardView: View{
                     Spacer()
                     if let couponname = couponName {
                         Text(couponname)
+                            .foregroundColor(Color("TextColor"))
                             .font(.system(size :20))
-                            .foregroundColor(.black)
                     } else {
                         Text("NULL")
+                            .foregroundColor(Color("TextColor"))
                             .font(.system(size :20))
-                            .foregroundColor(.black)
                     }
                     Spacer()
                     VStack{
@@ -95,6 +95,7 @@ struct cardView: View{
                             if let limitExact = limit,
                                let date = dateToString(date: limitExact) {
                                 Image(systemName:"clock")
+                                    .foregroundColor(.gray)
                                 Text(date)
                                     .foregroundColor(.gray)
                                     .font(.system(size :13))
@@ -105,6 +106,7 @@ struct cardView: View{
                             if let companyname = companyName {
                                 if companyname != ""{
                                     Image(systemName:"mappin.circle")
+                                        .foregroundColor(.gray)
                                     Text(companyname)
                                         .foregroundColor(.gray)
                                         .font(.system(size :13))

@@ -15,6 +15,17 @@ func dateToString(date: Date?) -> String? {
     } else {
         return nil
     }
+}
+
+func dateToStringWithoutYear(date: Date?) -> String? {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MM/dd"
+    
+    if let exactDate = date {
+        return formatter.string(from:exactDate)
+    } else {
+        return nil
+    }
     
 }
 

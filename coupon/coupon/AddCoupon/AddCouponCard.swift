@@ -71,13 +71,14 @@ struct AddCouponCard: View {
                     ProgressView()
                 }
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing){
-                    NavigationLink(destination: BellView()) {
-                        Image(systemName: "bell")
-                    }
-                }
-            }
+            // 今度追加予定
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarTrailing){
+//                    NavigationLink(destination: BellView()) {
+//                        Image(systemName: "bell")
+//                    }
+//                }
+//            }
         }
     }
     
