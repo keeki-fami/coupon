@@ -19,6 +19,7 @@ struct EditView: View {
     @EnvironmentObject var isEditView: IsEditView
     @State private var isCalendarView:Bool = false
     @State private var photoPickerItem: PhotosPickerItem?
+    @State private var isAlert = false
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [],
@@ -29,7 +30,7 @@ struct EditView: View {
         NavigationStack{
             ZStack{
                 Rectangle()
-                    .fill(Color(red: 242/255, green: 242/255, blue: 247/255))
+                    .fill(Color("EditViewBackgroundColor"))
                 
                 ScrollView{
                     
@@ -40,7 +41,7 @@ struct EditView: View {
                         }
                         ZStack{
                             Rectangle()
-                                .fill(.white)
+                                .fill(Color("EditViewTextColor"))
                                 .frame(maxWidth:.infinity,minHeight:200,maxHeight:200)
                             PhotosPicker(selection: $photoPickerItem) {
                                 ZStack{
@@ -69,6 +70,7 @@ struct EditView: View {
                     VStack(spacing:5){
                         HStack{
                             Text("期限")
+                                .foregroundColor(Color("EditViewTextColor"))
                             Spacer()
                         }
                         Button(action:{
@@ -76,12 +78,13 @@ struct EditView: View {
                             
                         },label: {
                             Text("\(dateToString(date: addCouponModel.limit) ?? "MM/dd")")
+                                .foregroundColor(Color("EditViewTextColor"))
                             Spacer()
                         })
                             .textFieldStyle(.plain)                // 縁なし
                             .padding(.horizontal)                  // 内側の余白
                             .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)            // 幅いっぱい
-                            .background(Color.white)
+                            .background(Color("EditViewTextColor"))
                             .sheet(isPresented: $isCalendarView){
                                 CalendarView(limit: $addCouponModel.limit)
                                     .presentationDetents([.medium])
@@ -93,6 +96,7 @@ struct EditView: View {
                     VStack(spacing:5){
                         HStack{
                             Text("会社名")
+                                .background(Color("EditViewTextColor"))
                             Spacer()
                         }
                         TextField("会社名",text:$addCouponModel.companyName)
@@ -140,6 +144,21 @@ struct EditView: View {
                 }
                 .navigationTitle("編集")
                 .navigationBarTitleDisplayMode(.inline)
+                .navigationBarItems(
+                    leading:Button("キャンセル"){
+                        isAlert = true
+                    }
+                )
+                .alert("操作を中止しますか",isPresented: $isAlert) {
+                    Button("中止", role: .destructive) {
+                        isEditView.isEdit = false
+                    }
+                    Button("戻る", role: .cancel) {
+                        isAlert = false
+                    }
+                }message: {
+                    Text("この操作は元に戻せません")
+                }
                 .onTapGesture{
                     UIApplication.shared.closeKeyboard()
                     print("フォーカスの変更 closeKeyboard呼び出し")
@@ -158,6 +177,7 @@ struct EditView: View {
             }
             .interactiveDismissDisabled()
             .scrollDismissesKeyboard(.interactively)
+            
         }
     }
     

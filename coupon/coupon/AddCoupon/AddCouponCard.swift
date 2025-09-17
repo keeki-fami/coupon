@@ -42,6 +42,10 @@ struct AddCouponCard: View {
             .navigationTitle("クーポンを追加する")
             .sheet(isPresented: $isPickerPresented) {
                 ImagePicker(image: $selectedImage, done: toggleImageCropper)
+                    .onAppear(){
+                        // recognizedtextの初期化
+                        recognizedText = ""
+                    }
             }
             .sheet(isPresented:$isImageCropper) {
                 ImageCropper(image: $selectedImage, visible: $isImageCropper, done: creppedImage, onImagePicked: { image in
