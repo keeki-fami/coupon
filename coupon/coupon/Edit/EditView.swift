@@ -70,7 +70,7 @@ struct EditView: View {
                     VStack(spacing:5){
                         HStack{
                             Text("期限")
-                                .foregroundColor(Color("EditViewTextColor"))
+                                
                             Spacer()
                         }
                         Button(action:{
@@ -78,13 +78,13 @@ struct EditView: View {
                             
                         },label: {
                             Text("\(dateToString(date: addCouponModel.limit) ?? "MM/dd")")
-                                .foregroundColor(Color("EditViewTextColor"))
                             Spacer()
                         })
                             .textFieldStyle(.plain)                // 縁なし
                             .padding(.horizontal)                  // 内側の余白
                             .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)            // 幅いっぱい
                             .background(Color("EditViewTextColor"))
+                            .foregroundColor(Color("TextColor"))
                             .sheet(isPresented: $isCalendarView){
                                 CalendarView(limit: $addCouponModel.limit)
                                     .presentationDetents([.medium])
@@ -96,14 +96,16 @@ struct EditView: View {
                     VStack(spacing:5){
                         HStack{
                             Text("会社名")
-                                .background(Color("EditViewTextColor"))
+                                
                             Spacer()
                         }
                         TextField("会社名",text:$addCouponModel.companyName)
                             .textFieldStyle(.plain)                // 縁なし
-                            .padding(.horizontal)                  // 内側の余白
+                            .padding(.horizontal)
                             .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)            // 幅いっぱい
-                            .background(Color.white)
+                            .foregroundColor(Color("TextColor"))
+                            .background(Color("EditViewTextColor"))
+                            
                     }
                     .padding(10)
                     
@@ -114,9 +116,10 @@ struct EditView: View {
                         }
                         TextField("クーポン名",text:$addCouponModel.couponName)
                             .textFieldStyle(.plain)                // 縁なし
-                            .padding(.horizontal)                  // 内側の余白
+                            .padding(.horizontal)
                             .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)            // 幅いっぱい
-                            .background(Color.white)
+                            .foregroundColor(Color("TextColor"))
+                            .background(Color("EditViewTextColor"))
                     }
                     .padding(10)
                     
@@ -129,7 +132,9 @@ struct EditView: View {
                             .textFieldStyle(.plain)                // 縁なし
                             .padding(.horizontal)                  // 内側の余白
                             .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 200)            // 幅いっぱい
-                            .background(Color.white)
+                            .foregroundColor(Color("TextColor"))
+                            .scrollContentBackground(.hidden)
+                            .background(Color("EditViewTextColor"))
                     }
                     .padding(10)
                     

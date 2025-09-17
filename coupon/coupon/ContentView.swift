@@ -11,6 +11,12 @@ struct ContentView: View {
     @EnvironmentObject var isEditView: IsEditView
     @AppStorage("isNotificated_1") private var isNotificated = false
     @State private var selection = 0
+    @State private var isPickerPresented = false
+    @State private var isImageCropper = false
+    @State private var recognizedText: String = ""
+    @State private var largestText: String? = ""
+    @State private var selectedImage: UIImage?
+    @State var isLoading: Bool = false
     var body: some View {
         VStack(spacing:0){
             TabView(selection: $selection){
@@ -27,12 +33,12 @@ struct ContentView: View {
             
             ZStack(){
                 Rectangle()
-                    .fill(.white)
+                    .fill(Color("EditViewBackgroundColor"))
                     .frame(height:80)
                     .shadow(color: .gray, radius: 5, x:0, y:-2)
                 ZStack{
                     Rectangle()
-                        .fill(.white)
+                        .fill(Color("EditViewBackgroundColor"))
                         .ignoresSafeArea(edges: .bottom)
                     
                     HStack {
@@ -44,6 +50,21 @@ struct ContentView: View {
                                 Image(systemName: "ticket")
                                 Text("coupon")
                             }
+                            .foregroundColor(selection == 0 ? .blue : .gray)
+                        })
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            isPickerPresented = true
+                            print("押されました")
+                        }, label: {
+                            VStack{
+                                Image(systemName: "plus.circle.fill")
+                                    .resizable()
+                                    .frame(width:50, height:50)
+                            }
+                            .foregroundColor(.blue)
                         })
                         
                         Spacer()
@@ -55,6 +76,7 @@ struct ContentView: View {
                                 Image(systemName:"barcode.viewfinder")
                                 Text("scan")
                             }
+                            .foregroundColor(selection == 1 ? .blue : .gray)
                         })
                         
                         Spacer()
@@ -62,7 +84,58 @@ struct ContentView: View {
                 }
                 .frame(height:80)
             }
+            .sheet(isPresented: $isPickerPresented) {
+                ImagePicker(image: $selectedImage, done: toggleImageCropper)
+                    .onAppear(){
+                        // recognizedtextの初期化
+                        recognizedText = ""
+                    }
+            }
+            .sheet(isPresented:$isImageCropper) {
+                ImageCropper(image: $selectedImage, visible: $isImageCropper, done: creppedImage, onImagePicked: { image in
+                    Task{
+                        
+                        isLoading = true
+                        await recognizeText(
+                            from: image,
+                            recognizedText: $recognizedText,
+                            largestText: $largestText
+                        )
+                        await displayEditView(isLoading: $isLoading)
+                        
+                    }
+                })
+            }
+            .sheet(isPresented: $isEditView.isEdit) {
+                EditView(recognizedText: $recognizedText,
+                         selectedImage: $selectedImage,
+                         largestText: $largestText)
+                    .onAppear(){
+                        print("呼び出します")
+                    }
+            }
+            .overlay(){
+                if isLoading {
+                    ProgressView()
+                }
+            }
         }
+    }
+    func displayEditView(isLoading: Binding<Bool>) async {
+        await isLoading.wrappedValue = false
+        await isEditView.isEdit = true
+    }
+    
+    func creppedImage(image: UIImage) {
+        selectedImage = image
+    }
+    func toggleImageCropper() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            withAnimation{
+                isImageCropper = true
+            }
+        }
+        isImageCropper = true
     }
 }
 
