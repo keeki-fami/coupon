@@ -12,11 +12,19 @@ struct couponApp: App {
     @StateObject private var isEditView = IsEditView()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     let persistenceController = PersistenceController.shared
+    @AppStorage("isInitCompanyList") private var isInitCompanyList = false
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(isEditView)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .onAppear() {
+                    if isInitCompanyList == false {
+                        isInitCompanyList = true
+                        UserDefaults.standard.set(["セブンイレブン","セブン-イレブン","スターバックス","STARBUCKS","ローソン","ファミリーマート","ミニストップ"],forKey:"companyList") 
+                    }
+                }
         }
     }
 }

@@ -12,8 +12,15 @@ class EditViewModel: ObservableObject {
     
     init() {
         // Todo : companyListのdecode処理
-        self.companyList = ["セブンイレブン", "ローソン", "スターバックス", "ファミリーマート","セブン-イレブン"]
+        let companyListString = UserDefaults.standard.stringArray(forKey:"companyList")
+        if let companylist = companyListString {
+            self.companyList = companylist
+        } else {
+            self.companyList = ["スターバックス", "セブンイレブン", "セブン-イレブン", "ローソン", "ファミリーマート", "ミニストップ"]
+        }
+        
     }
+
     
     func extractCompany(from text: String) -> String? {
         
@@ -70,3 +77,14 @@ class EditViewModel: ObservableObject {
     }
 }
 
+func updateCompanyList(company: String) async {
+    let companylist = UserDefaults.standard.stringArray(forKey: "companyList")
+    if var companyArray = companylist {
+        if !companyArray.contains(company) {
+            companyArray.append(company)
+            UserDefaults.standard.set(companyArray, forKey: "companyList")
+        } else {
+            return
+        }
+    }
+}

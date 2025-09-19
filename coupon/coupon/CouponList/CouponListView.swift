@@ -11,7 +11,7 @@ import SwiftUI
 struct CouponListView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
-        sortDescriptors: [],
+        sortDescriptors: [NSSortDescriptor(keyPath: \CardModel.limit, ascending: true)],
         animation: .default
     ) private var coupons: FetchedResults<CardModel>
     

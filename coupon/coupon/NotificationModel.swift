@@ -38,11 +38,16 @@ func scheduleNotification(date: Date, coupon: String,id:String) {
 func notificationDateChanger(date: Date) -> Date? {
     let calendar = Calendar.current
     
+    let hour = UserDefaults.standard.integer(forKey: "notificationHour")
+    let minute = UserDefaults.standard.integer(forKey: "notificationMinute")
+    
     if let previousDay = calendar.date(byAdding:.day,value: -1, to: date) {
         var components = calendar.dateComponents([.year, .month, .day],from: previousDay)
-        components.hour = 2
-        components.minute = 3
+        components.hour = hour
+        components.minute = minute
         components.second = 0
+        
+        print("値をセット：\(hour):\(minute)")
         
         if let newDate = calendar.date(from: components) {
             print(newDate)

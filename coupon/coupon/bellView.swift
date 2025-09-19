@@ -8,15 +8,20 @@
 import SwiftUI
 
 struct BellView: View {
+    @State private var isCalendar = false
+    @State private var date: Date = Date()
+    @AppStorage("notificationHour") private var hour: Int = 0
+    @AppStorage("notificationMinute") private var minute: Int = 0
     var body: some View {
         Text("notification centerです")
         
-        Button("12:05に通知が送られます。") {
-            scheduleNotification(
-                date: Date(),
-                coupon: "couponName",
-                id: UUID().uuidString
-            )
+        DatePicker("時間を選択", selection: $date, displayedComponents: .hourAndMinute)
+            .datePickerStyle(.wheel)
+        
+        Button("登録") {
+            let calendar = Calendar.current
+            hour = calendar.component(.hour, from: date)
+            minute = calendar.component(.minute, from: date)
         }
     }
 }

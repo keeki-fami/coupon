@@ -114,16 +114,20 @@ struct ContentView: View {
                         print("呼び出します")
                     }
             }
-            .overlay(){
-                if isLoading {
-                    ProgressView()
-                }
+
+        }
+        .overlay(){
+            if isLoading {
+                LoadingView()
+                    .onAppear(){
+                        print("出力")
+                    }
             }
         }
     }
     func displayEditView(isLoading: Binding<Bool>) async {
-        await isLoading.wrappedValue = false
-        await isEditView.isEdit = true
+        isEditView.isEdit = true
+        isLoading.wrappedValue = false
     }
     
     func creppedImage(image: UIImage) {

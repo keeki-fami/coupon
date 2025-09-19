@@ -20,6 +20,7 @@ struct EditView: View {
     @State private var isCalendarView:Bool = false
     @State private var photoPickerItem: PhotosPickerItem?
     @State private var isAlert = false
+    @State private var isLoadingView = false
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [],
@@ -139,8 +140,12 @@ struct EditView: View {
                     .padding(10)
                     
                     Button(action: {
-                        setCoreDataToCard(addCouponModel:addCouponModel)
-                        isEditView.isEdit = false
+                        Task{
+                            isLoadingView = true
+                            await setCoreDataToCard(addCouponModel:addCouponModel)
+                            await updateCompanyList(company:addCouponModel.companyName)
+                            isEditView.isEdit = false
+                        }
                     }, label: {
                         Text("追加")
                     })
@@ -186,7 +191,7 @@ struct EditView: View {
         }
     }
     
-    func setCoreDataToCard(addCouponModel: AddCouponModel) {
+    func setCoreDataToCard(addCouponModel: AddCouponModel) async {
         let newCard = CardModel(context: viewContext)
         newCard.couponName = addCouponModel.couponName
         newCard.companyName = addCouponModel.companyName
