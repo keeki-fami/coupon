@@ -16,7 +16,7 @@ struct CouponListView: View {
     ) private var coupons: FetchedResults<CardModel>
     
     var body: some View {
-        NavigationStack{
+        // NavigationStack{
             VStack{
                 if coupons.count != 0 {
                     ScrollView{
@@ -55,8 +55,8 @@ struct CouponListView: View {
                 }
                 
             }
-            .navigationTitle("クーポン")
-        }
+           // .navigationTitle("クーポン")
+        //}
     }
     
     func deleteCard(coupon: CardModel) {

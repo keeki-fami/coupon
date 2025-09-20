@@ -14,7 +14,7 @@ struct InfomationView: View {
     @State private var allInAll = 0
     var body: some View {
         GeometryReader { geometry in
-            NavigationStack {
+            // NavigationStack {
                 VStack() {
                     
                     VStack(spacing: 5) {
@@ -120,8 +120,8 @@ struct InfomationView: View {
                     .padding()
                     
                 }
-                .navigationTitle("情報")
-            }
+                // .navigationTitle("情報")
+            // }
             .onAppear() {
                 usedInMonth = UserDefaults.standard.integer(forKey: "usedInMonth")
                 allInMonth = UserDefaults.standard.integer(forKey: "allInMonth")

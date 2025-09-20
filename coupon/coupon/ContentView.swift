@@ -22,6 +22,7 @@ struct ContentView: View {
     @State private var largestText: String? = ""
     @State private var selectedImage: UIImage?
     @State var isLoading: Bool = false
+    @State private var showTitle = false
     var body: some View {
         NavigationStack{
             VStack(spacing:0){
@@ -30,14 +31,18 @@ struct ContentView: View {
                     CouponListView()
                         .tag(0)
                     
-                    //                AddCouponCard()
-                    //                    .tag(1)
-                    
                     InfomationView()
                         .tag(1)
                     
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        NavigationLink(destination: BellView()) {
+                            Image(systemName: "clock")
+                        }
+                    }
+                }
                 
                 
                 ZStack(){
@@ -125,6 +130,7 @@ struct ContentView: View {
                 }
                 
             }
+            .navigationTitle(selection == 0 ? "クーポン" : "情報")
             .overlay(){
                 if isLoading {
                     LoadingView()
@@ -134,13 +140,6 @@ struct ContentView: View {
                 }
                 if isEditView.isGoodView {
                     GoodView()
-                }
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing){
-                    NavigationLink(destination: BellView()) {
-                        Image(systemName: "clock")
-                    }
                 }
             }
             .onAppear() {
