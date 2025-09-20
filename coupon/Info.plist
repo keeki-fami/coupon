@@ -5,4 +5,8 @@
 	<key>NSCameraUsageDescription</key>
 	<string>このアプリではクーポン撮影のためカメラを使用します</string>
 </dict>
+<dict>
+	<key>UISupportedInterfaceOrientations</key>
+	<string>UIInterfaceOrientationPortrait</string>
+</dict>
 </plist>

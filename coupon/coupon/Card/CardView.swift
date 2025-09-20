@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AudioToolbox
 
 struct CardView: View {
     @State private var isCardInfo = false
@@ -16,6 +17,7 @@ struct CardView: View {
     let limit:Date?
     let notes:String?
     let selectedImage:Data?
+    let couponId:String?
     let deleteCard: () -> Void
     
     
@@ -30,6 +32,7 @@ struct CardView: View {
                 companyName: companyName,
                 limit: limit,
                 deleteCard: deleteCard,
+                couponId: couponId,
                 cornerColor: cornerColor)
                 .frame(width:300,height:200)
                 .cornerRadius(5)
@@ -43,16 +46,21 @@ struct CardView: View {
             if let cardLimit = limit {
                 let calendar = Calendar.current
                 let date = calendar.startOfDay(for: Date())
+                let cardLimitFormat = calendar.startOfDay(for: cardLimit)
                 
-                if abs(cardLimit.timeIntervalSince(date)) <= 60*60*24 {
+                print("\(date)")
+                print("\(couponName):\(cardLimitFormat)")
+                if cardLimitFormat.timeIntervalSince(date) <= 60*60*24 {
+                    print("aaa")
+                    print("\(couponName)は、黄色です。")
                     cornerColor = .yellow
                     cornerLineWidth = 5
-                }
-                if cardLimit.timeIntervalSince(date) < 0 {
+                } else { print("false") }
+                if cardLimitFormat.timeIntervalSince(date) < 0 {
+                    print("\(couponName)は、赤色です。")
                     cornerColor = .red
                     cornerLineWidth = 5
                 }
-                print("\(couponName):\(cardLimit.timeIntervalSince(Date()))")
             }
         }
         
@@ -67,10 +75,15 @@ struct cardView: View{
     let companyName: String?
     let limit: Date?
     let deleteCard: () -> Void
+    let couponId: String?
     let cornerColor: Color
     @State private var isAlert = false
     @State private var isWarning = false
     @State private var isX = false
+    @State private var isCheck = false
+    @State private var isGood = false
+    @EnvironmentObject private var isEditView: IsEditView
+    let UINFGenerator = UINotificationFeedbackGenerator()
     var body: some View{
         ZStack{
             HStack() {
@@ -139,6 +152,11 @@ struct cardView: View{
                         }
                         HStack{
                             Spacer()
+                            Button(action: {
+                                isCheck = true
+                            }, label: {
+                                Image(systemName: "checkmark.circle.fill")
+                            })
                             if (cornerColor == Color.yellow) {
                                 Button(action: {
                                     isWarning = true
@@ -169,6 +187,11 @@ struct cardView: View{
         .alert("このクーポンを削除しますか",isPresented: $isAlert) {
             Button("削除", role: .destructive) {
                 deleteCard()
+                if let couponid = couponId {
+                    print("クーポンID\(couponid)を削除しました。")
+                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [couponid])
+                }
+
             }
             Button("キャンセル", role: .cancel) {
                 print("削除ボタンが押されました")
@@ -190,6 +213,30 @@ struct cardView: View{
         }message: {
             Text("このクーポンは既に期限が切れています")
         }
+        
+        .alert("確認", isPresented: $isCheck) {
+            Button("OK", role: .destructive) {
+                Task {
+                    UINFGenerator.notificationOccurred(.success)
+                    deleteCard()
+                    popupGoodView()
+                    await updateCardUsed()
+                }
+            }
+            Button("キャンセル", role: .cancel){
+                print("キャンセルが押されました。")
+            }
+        }message: {
+            Text("このクーポンを\"使用済み\"にしますか")
+        }
+    }
+    func popupGoodView() {
+        isEditView.isGoodView = true
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            isEditView.isGoodView = false
+        }
+        
     }
 }
 

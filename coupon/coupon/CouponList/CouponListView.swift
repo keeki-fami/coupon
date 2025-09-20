@@ -28,6 +28,7 @@ struct CouponListView: View {
                                     limit: coupon.limit,
                                     notes: coupon.notes,
                                     selectedImage: coupon.selectedImage,
+                                    couponId: coupon.identifier,
                                     deleteCard: {deleteCard(coupon:coupon)}
                                 )
                                 .padding(10)
@@ -55,13 +56,6 @@ struct CouponListView: View {
                 
             }
             .navigationTitle("クーポン")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing){
-                    NavigationLink(destination: BellView()) {
-                        Image(systemName: "bell")
-                    }
-                }
-            }
         }
     }
     

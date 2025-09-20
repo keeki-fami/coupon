@@ -9,4 +9,5 @@ import SwiftUI
 
 class IsEditView :ObservableObject{
     @Published var isEdit:Bool = false
+    @Published var isGoodView:Bool = false
 }

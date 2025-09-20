@@ -144,6 +144,7 @@ struct EditView: View {
                             isLoadingView = true
                             await setCoreDataToCard(addCouponModel:addCouponModel)
                             await updateCompanyList(company:addCouponModel.companyName)
+                            await updateCouponInfomation()
                             isEditView.isEdit = false
                         }
                     }, label: {
@@ -229,6 +230,14 @@ struct EditView: View {
     func genUUID() -> String {
         let id = UUID()
         return id.uuidString
+    }
+    
+    func updateCouponInfomation() async {
+        let allinall = UserDefaults.standard.integer(forKey: "allInAll")
+        let allinmonth = UserDefaults.standard.integer(forKey: "allInMonth")
+        
+        UserDefaults.standard.set(allinall + 1, forKey: "allInAll")
+        UserDefaults.standard.set(allinmonth + 1, forKey: "allInMonth")
     }
 }
 
