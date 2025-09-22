@@ -12,10 +12,13 @@ struct BellView: View {
     @State private var date: Date = Date()
     @State private var nowHour = 0
     @State private var nowMinute = 0
+    @State private var nowCallDay = 1
     @State private var isNotify = false
     @State private var isCalendarView = false
+    @State private var isCalendarDateView = false
     @AppStorage("notificationHour") private var hour: Int = 0
     @AppStorage("notificationMinute") private var minute: Int = 0
+    @AppStorage("notificationDay") private var callDay: Int = 1
     var body: some View {
         NavigationStack{
             GeometryReader {geometry in
@@ -24,7 +27,9 @@ struct BellView: View {
                     Spacer()
                     
                     Text("現在の通知時間")
-                    Text("\(String(format: "%02d",nowHour)):\(String(format: "%02d", nowMinute))" )
+                    VStack(spacing:5){
+                        Text("\(String(format: "%02d",nowHour)):\(String(format: "%02d", nowMinute))" )
+                    }
                         .font(.system(size: 30))
                         .bold()
                         .padding()
@@ -41,7 +46,7 @@ struct BellView: View {
                         },label: {
                             VStack(spacing:5){
                                 HStack{
-                                    Text("変更")
+                                    Text("時間を選択")
                                     Spacer()
                                 }
                                 
@@ -70,7 +75,7 @@ struct BellView: View {
                                     .presentationDragIndicator(.visible)
                             }
                     }
-                    .padding(10)
+                    .padding(5)
                         .onAppear() {
                             let calendar = Calendar.current
                             var components = calendar.dateComponents([.hour,.minute],from:Date())
@@ -79,20 +84,63 @@ struct BellView: View {
                             nowMinute = minute
                             components.hour = nowHour
                             components.minute = nowMinute
+                            nowCallDay = callDay
                             
                             if let madeDate = calendar.date(from: components) {
                                 date = madeDate
                             }
                         }
+                    
+                    VStack(spacing:5){
+                        Button(action:{
+                            isCalendarDateView = true
+                            
+                        },label: {
+                            VStack(spacing:5){
+                                HStack{
+                                    Text("通知日を選択")
+                                    Spacer()
+                                }
+                                
+                                ZStack{
+                                
+                                    Rectangle()
+                                        .fill(Color("BellButton"))
+                                        .shadow(color: .gray.opacity(0.3),radius:5)
+                                    HStack{
+                                        Spacer()
+                                        Text("\(String(nowCallDay))日前")
+                                        Spacer()
+                                    }
+                                }
+                            }
+                            .textFieldStyle(.plain)                // 縁なし
+                            .padding(.horizontal)                  // 内側の余白
+                            .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)
+                            
+                            .foregroundColor(Color("TextColor"))
+                        })
+                            .sheet(isPresented: $isCalendarDateView){
+                                CalendarDateView(selection: $nowCallDay)
+                                    .presentationDetents([.medium])
+                                    .presentationDragIndicator(.visible)
+                            }
+                    }
+                    .padding(5)
                     Spacer()
                     
+                    
+                    
                     Button("登録") {
+                        
                         isNotify = true
                         let calendar = Calendar.current
                         hour = calendar.component(.hour, from: date)
                         minute = calendar.component(.minute, from: date)
+                        callDay = nowCallDay
                         nowHour = hour
                         nowMinute = minute
+                        
                     }
                     .navigationTitle("通知設定")
                     

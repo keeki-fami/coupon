@@ -40,8 +40,9 @@ func notificationDateChanger(date: Date) -> Date? {
     
     let hour = UserDefaults.standard.integer(forKey: "notificationHour")
     let minute = UserDefaults.standard.integer(forKey: "notificationMinute")
+    let callDay = UserDefaults.standard.integer(forKey: "notificationDay")
     
-    if let previousDay = calendar.date(byAdding:.day,value: -1, to: date) {
+    if let previousDay = calendar.date(byAdding:.day,value: -1 * callDay, to: date) {
         var components = calendar.dateComponents([.year, .month, .day],from: previousDay)
         components.hour = hour
         components.minute = minute
