@@ -150,13 +150,45 @@ struct BellView: View {
                         Rectangle()
                             .fill(Color("InfomationBackground"))
                             .frame(height:geometry.size.height * 0.5)
-                        VStack(alignment:.leading){
-                            Text("設定した時間に通知が送信されます。")
-                                .padding(.vertical)
-                            Text("例：12:00で登録")
-                            Text("9月15日期限　→ 9月14日12:00に通知")
+                        VStack(){
+                            VStack(spacing:5){
+                                HStack{
+                                    Text("1. 設定した時間に通知が送信されます。")
+                                    Spacer()
+                                }
+                                .padding(.horizontal)
+                                HStack{
+                                    Text("例：12:00で登録")
+                                    Spacer()
+                                }
+                                .padding(.horizontal)
+                                HStack{
+                                    Text("9月15日期限　→ 9月14日12:00に通知")
+                                    Spacer()
+                                }
+                                .padding(.horizontal)
+                            }
+                            .padding(.vertical)
+                            VStack(spacing:5){
+                                HStack{
+                                    Text("2. 設定後に登録されたクーポンに適用されます。")
+                                    Spacer()
+                                }
+                                .padding(.horizontal)
+                                HStack{
+                                    Text("設定前に登録されたクーポンには適用されません。")
+                                    Spacer()
+                                }
+                                .padding(.horizontal)
+                                HStack{
+                                    Text("初回起動時には「1日前 00:00」が適用されます。")
+                                    Spacer()
+                                }
+                                .padding(.horizontal)
+                            }
                             Spacer()
                         }
+                        
                         
                     }
                     .foregroundColor(.gray)

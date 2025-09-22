@@ -12,10 +12,24 @@ struct InfomationView: View {
     @State private var allInMonth = 0
     @State private var usedInAll = 0
     @State private var allInAll = 0
+    @State private var percent = 0
     var body: some View {
         GeometryReader { geometry in
-            // NavigationStack {
+             ScrollView {
+            
                 VStack() {
+                    
+                    VStack(spacing: 5){
+                        HStack {
+                            Text("今月のクーポンの使用率...")
+                            Spacer()
+                        }
+                        .padding(.horizontal)
+                        Text("\(String(percent))%")
+                            .font(.system(size: 40))
+                            .bold()
+                            .padding()
+                    }
                     
                     VStack(spacing: 5) {
                         
@@ -121,12 +135,16 @@ struct InfomationView: View {
                     
                 }
                 // .navigationTitle("情報")
-            // }
+             }
             .onAppear() {
                 usedInMonth = UserDefaults.standard.integer(forKey: "usedInMonth")
                 allInMonth = UserDefaults.standard.integer(forKey: "allInMonth")
                 usedInAll = UserDefaults.standard.integer(forKey: "usedInAll")
                 allInAll = UserDefaults.standard.integer(forKey: "allInAll")
+                
+                if allInMonth > 0 {
+                    percent = (usedInMonth / allInMonth) as Int
+                }
                 
             }
             

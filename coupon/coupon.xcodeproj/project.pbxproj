@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		58EBC2352E68681100C94495 /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 58EBC2342E68681100C94495 /* CropViewController */; };
 		58EBC2372E68681100C94495 /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 58EBC2362E68681100C94495 /* TOCropViewController */; };
+		94A34C452E812C4E003FF166 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 94A34C442E812C4E003FF166 /* GoogleMobileAds */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94A34C452E812C4E003FF166 /* GoogleMobileAds in Frameworks */,
 				58EBC2372E68681100C94495 /* TOCropViewController in Frameworks */,
 				58EBC2352E68681100C94495 /* CropViewController in Frameworks */,
 			);
@@ -77,6 +79,7 @@
 			packageProductDependencies = (
 				58EBC2342E68681100C94495 /* CropViewController */,
 				58EBC2362E68681100C94495 /* TOCropViewController */,
+				94A34C442E812C4E003FF166 /* GoogleMobileAds */,
 			);
 			productName = coupon;
 			productReference = 587462CC2E61F03F00BDA74A /* coupon.app */;
@@ -108,6 +111,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				58EBC2332E68681100C94495 /* XCRemoteSwiftPackageReference "TOCropViewController" */,
+				94A34C432E812C4E003FF166 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 587462CD2E61F03F00BDA74A /* Products */;
@@ -365,6 +369,14 @@
 				minimumVersion = 2.7.4;
 			};
 		};
+		94A34C432E812C4E003FF166 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.11.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -377,6 +389,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 58EBC2332E68681100C94495 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
 			productName = TOCropViewController;
+		};
+		94A34C442E812C4E003FF166 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 94A34C432E812C4E003FF166 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
