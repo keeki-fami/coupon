@@ -8,12 +8,14 @@
 import CoreData
 import SwiftUI
 
+
 struct CouponListView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \CardModel.limit, ascending: true)],
         animation: .default
     ) private var coupons: FetchedResults<CardModel>
+    
     
     var body: some View {
         // NavigationStack{
@@ -51,7 +53,8 @@ struct CouponListView: View {
                         .foregroundStyle(.gray)
                     Text("4: 情報を入力して追加完了")
                         .foregroundStyle(.gray)
-                    
+                    // BannerViewContainer(adSize)
+                      // .frame(width: adSize.size.width, height: adSize.size.height)
                 }
                 
             }

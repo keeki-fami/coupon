@@ -36,16 +36,20 @@ struct EditView: View {
                 ScrollView{
                     
                     VStack(spacing:5){
+                        
                         HStack{
+                            
                             Text("写真")
                             Spacer()
                         }
                         ZStack{
+                            
                             Rectangle()
                                 .fill(Color("EditViewTextColor"))
                                 .frame(maxWidth:.infinity,minHeight:200,maxHeight:200)
                             PhotosPicker(selection: $photoPickerItem) {
                                 ZStack{
+                                    
                                     Image(uiImage: addCouponModel.selectedImage)
                                         .resizable()
                                         .scaledToFit()
@@ -58,7 +62,9 @@ struct EditView: View {
                                 }
                             }
                             .onChange(of: photoPickerItem) { item in
+                                
                                 Task {
+                                    
                                     guard let data = try? await item?.loadTransferable(type: Data.self) else { return }
                                     guard let uiImage = UIImage(data: data) else { return }
                                     addCouponModel.selectedImage = uiImage
@@ -69,15 +75,19 @@ struct EditView: View {
                     .padding(10)
                     
                     VStack(spacing:5){
+                        
                         HStack{
+                            
                             Text("期限")
                                 
                             Spacer()
                         }
                         Button(action:{
+                            
                             isCalendarView = true
                             
                         },label: {
+                            
                             Text("\(dateToString(date: addCouponModel.limit) ?? "MM/dd")")
                             Spacer()
                         })
@@ -95,9 +105,10 @@ struct EditView: View {
                     .padding(10)
                     
                     VStack(spacing:5){
+                        
                         HStack{
+                            
                             Text("会社名")
-                                
                             Spacer()
                         }
                         TextField("会社名",text:$addCouponModel.companyName)
@@ -106,12 +117,12 @@ struct EditView: View {
                             .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)            // 幅いっぱい
                             .foregroundColor(Color("TextColor"))
                             .background(Color("EditViewTextColor"))
-                            
                     }
                     .padding(10)
-                    
                     VStack(spacing:5){
+                        
                         HStack{
+                            
                             Text("クーポン名")
                             Spacer()
                         }
@@ -124,30 +135,33 @@ struct EditView: View {
                     }
                     .padding(10)
                     
-                    VStack(spacing:5){
-                        HStack{
-                            Text("備考")
-                            Spacer()
-                        }
-                        TextEditor(text: $addCouponModel.notes)
-                            .textFieldStyle(.plain)                // 縁なし
-                            .padding(.horizontal)                  // 内側の余白
-                            .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 200)            // 幅いっぱい
-                            .foregroundColor(Color("TextColor"))
-                            .scrollContentBackground(.hidden)
-                            .background(Color("EditViewTextColor"))
-                    }
-                    .padding(10)
-                    
+//                    VStack(spacing:5){
+//                        HStack{
+//                            Text("備考")
+//                            Spacer()
+//                        }
+//                        TextEditor(text: $addCouponModel.notes)
+//                            .textFieldStyle(.plain)                // 縁なし
+//                            .padding(.horizontal)                  // 内側の余白
+//                            .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 200)            // 幅いっぱい
+//                            .foregroundColor(Color("TextColor"))
+//                            .scrollContentBackground(.hidden)
+//                            .background(Color("EditViewTextColor"))
+//                    }
+//                    .padding(10)
                     Button(action: {
+                        
                         Task{
+                            
                             isLoadingView = true
                             await setCoreDataToCard(addCouponModel:addCouponModel)
                             await updateCompanyList(company:addCouponModel.companyName)
                             await updateCouponInfomation()
                             isEditView.isEdit = false
                         }
+                        
                     }, label: {
+                        
                         Text("追加")
                     })
                     .padding()
@@ -157,25 +171,33 @@ struct EditView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(
                     leading:Button("キャンセル"){
+                        
                         isAlert = true
                     }
                 )
                 .alert("操作を中止しますか",isPresented: $isAlert) {
+                    
                     Button("中止", role: .destructive) {
+                        
                         isEditView.isEdit = false
                     }
                     Button("戻る", role: .cancel) {
+                        
                         isAlert = false
                     }
-                }message: {
+                    
+                } message: {
+                    
                     Text("この操作は元に戻せません")
                 }
                 .onTapGesture{
+                    
                     UIApplication.shared.closeKeyboard()
                     print("フォーカスの変更 closeKeyboard呼び出し")
                 }
             }
             .onAppear(){
+                
                 addCouponModel.clean()
                 print("渡されたrecognizedText:\(recognizedText)")
                 limitDate = editViewModel.extractDateRange(from: recognizedText)
@@ -219,43 +241,51 @@ struct EditView: View {
     }
     
     func imageToBinary(_ selectedImage: UIImage?) -> Data? {
+        
         if let image = selectedImage,
            let imageData = image.jpegData(compressionQuality: 0.8){
             return imageData
+            
         } else {
+            
             return nil
         }
     }
     
     func genUUID() -> String {
+        
         let id = UUID()
         return id.uuidString
     }
     
     func updateCouponInfomation() async {
+        
         let allinall = UserDefaults.standard.integer(forKey: "allInAll")
         let allinmonth = UserDefaults.standard.integer(forKey: "allInMonth")
-        
         UserDefaults.standard.set(allinall + 1, forKey: "allInAll")
         UserDefaults.standard.set(allinmonth + 1, forKey: "allInMonth")
     }
 }
 
 extension UIApplication {
+    
     func closeKeyboard() {
+        
         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 
 struct DarkPictureView: View{
+    
     var body: some View {
+        
         ZStack{
+            
             Rectangle()
                 .fill(.black)
                 .frame(maxWidth:.infinity)
                 .frame(height: 100)
                 .opacity(0.3)
-            
             Image(systemName: "photo.artframe.circle.fill")
                 .frame(width:100,height:100)
             

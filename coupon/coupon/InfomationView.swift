@@ -12,7 +12,7 @@ struct InfomationView: View {
     @State private var allInMonth = 0
     @State private var usedInAll = 0
     @State private var allInAll = 0
-    @State private var percent = 0
+    @State private var percent = 0.0
     var body: some View {
         GeometryReader { geometry in
              ScrollView {
@@ -25,7 +25,7 @@ struct InfomationView: View {
                             Spacer()
                         }
                         .padding(.horizontal)
-                        Text("\(String(percent))%")
+                        Text("\(String(Int(percent * 100)))%")
                             .font(.system(size: 40))
                             .bold()
                             .padding()
@@ -143,7 +143,7 @@ struct InfomationView: View {
                 allInAll = UserDefaults.standard.integer(forKey: "allInAll")
                 
                 if allInMonth > 0 {
-                    percent = (usedInMonth / allInMonth) as Int
+                    percent = Double(usedInMonth) / Double(allInMonth)
                 }
                 
             }
