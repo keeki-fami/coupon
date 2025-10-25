@@ -13,13 +13,13 @@ struct CalendarDateView: View {
         //Form {
             Picker("フルーツを選択", selection: $selection) {
                 /// 選択項目の一覧
-                Text("1日前").tag(1)
-                Text("2日前").tag(2)
-                Text("3日前").tag(3)
-                Text("4日前").tag(4)
-                Text("5日前").tag(5)
-                Text("6日前").tag(6)
-                Text("7日前").tag(7)
+                Text(String(localized: "CalendarDateViewOneDayBefore")).tag(1)
+                Text(String(localized: "CalendarDateViewTwoDayBefore")).tag(2)
+                Text(String(localized: "CalendarDateViewThreeDayBefore")).tag(3)
+                Text(String(localized: "CalendarDateViewFourDayBefore")).tag(4)
+                Text(String(localized: "CalendarDateViewFiveDayBefore")).tag(5)
+                Text(String(localized: "CalendarDateViewSixDayBefore")).tag(6)
+                Text(String(localized: "CalendarDateViewSevenDayBefore")).tag(7)
             }
             .pickerStyle(.wheel)
         //}

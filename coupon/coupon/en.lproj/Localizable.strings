@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  coupon
+
+  Created by 櫻田聖和 on 10/25/25.
+  
+*/
+"CalendarDateViewOneDayBefore" = "one day ago";
+"CalendarDateViewTwoDayBefore" = "two days ago";
+"CalendarDateViewThreeDayBefore" = "three days ago";
+"CalendarDateViewFourDayBefore" = "four days ago";
+"CalendarDateViewFiveDayBefore" = "five days ago";
+"CalendarDateViewSixDayBefore" = "six days ago";
+"CalendarDateViewSevenDayBefore" = "seven days ago";

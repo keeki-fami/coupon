@@ -1,0 +1,88 @@
+/* 
+  Localizable.strings
+  coupon
+
+  Created by 櫻田聖和 on 10/25/25.
+  
+*/
+// CouponListView
+"CouponListViewTitle" = "クーポン";
+"CouponListViewDescription_0" = "クーポンを追加しましょう";
+"CouponListViewDescription_1" = "1:画面右下の「scan」をタップ";
+"CouponListViewDescription_2-1" = "2:";
+"CouponListViewDescription_2-2" = "をタップ";
+"CouponListViewDescription_3" = "3: 写真を撮ってクーポンをスキャン";
+"CouponListViewDescription_4" = "4: 情報を入力して追加完了";
+
+// CardView
+"CardViewDeleteAlert" = "このクーポンを削除しますか";
+"CardViewDeleteButton" = "削除";
+"CardViewCancelButton" = "キャンセル";
+"CardViewCloseButton" = "閉じる";
+"CardViewOkayButton" = "OK";
+"CardViewNotification" = "通知";
+"CardViewWarningMessage" = "この操作は取り消せません";
+"CardViewWillExpire" = "このクーポンはあともう少しで期限が切れます";
+"CardViewLimitExpire" = "このクーポンは既に期限が切れています";
+"CardViewUsed" = "このクーポンを\"使用済み\"にしますか";
+
+//InfomationView
+"InfomationViewTitle" = "情報";
+"InfomationUseLabel" = "今月のクーポンの使用率...";
+"InfomationThisMonthLabel" = "今月";
+"InfomationLastMonthLabel" = "先月";
+"InfomationNumberOfUse" = "使用数";
+"InfomationNumberOfRegister" = "登録数";
+"InfomationWholeLabel" = "全体";
+
+// EditView
+"EditViewPhotoLabel" = "写真";
+"EditViewLimitLabel" = "期限";
+"EditViewCompanyLabel" = "会社名";
+"EditViewCouponLabel" = "クーポン名";
+"EditViewAddButton" = "追加";
+"EditViewCancelButton" = "キャンセル";
+"EditViewTitle" = "編集";
+"EditViewCancelAlert" = "操作を中止しますか";
+"EditViewCancelLabel" = "中止";
+"EditViewBackLabel" = "戻る";
+"EditViewNotBackLabel" = "この操作は元に戻せません";
+
+//bellView
+"bellViewLabel" = "通知設定";
+"bellViewNowNotificationTimeLabel" = "現在の通知時間";
+"bellViewSelectTimeLabel" = "時間を選択";
+"bellViewSelectNotificationTimeLabel" = "通知日を選択";
+"bellViewNotificationDay" = "日前";
+"bellViewRegisterButton" = "登録";
+"bellViewDescription1" = "1.設定した時間に通知が送信されます。";
+"bellViewDescription2" = "例：12:00で登録";
+"bellViewDescription3" = "9月15日期限　→ 9月14日12:00に通知";
+"bellViewDescription4" = "2. 設定後に登録されたクーポンに適用されます。";
+"bellViewDescription5" = "設定前に登録されたクーポンには適用されません。";
+"bellViewDescription6" = "初回起動時には「1日前 00:00」が適用されます。";
+"bellViewNotificationButton" = "通知";
+"bellViewOkayButton" = "OK";
+"bellViewSettiongCompleteLabel" = "通知時間の設定が完了しました";
+
+//GoodView
+"Good1" = "いいね！";
+"Good2" = "その調子！";
+"Good3" = "すごい！";
+
+//CalendarDateView
+"CalendarDateViewOneDayBefore" = "1日前";
+"CalendarDateViewTwoDayBefore" = "2日前";
+"CalendarDateViewThreeDayBefore" = "3日前";
+"CalendarDateViewFourDayBefore" = "4日前";
+"CalendarDateViewFiveDayBefore" = "5日前";
+"CalendarDateViewSixDayBefore" = "6日前";
+"CalendarDateViewSevenDayBefore" = "7日前";
+
+
+//AppStoreに最新版が公開された時（couponApp.swift）
+"NewVersionNotificationLabel" = "最新版があります";
+"MoveToAppStoreButton" = "移動";
+"CancelUpdating" = "キャンセル";
+"UrgeToUpdate" = "AppStoreで最新版をインストールしてください。";
+
