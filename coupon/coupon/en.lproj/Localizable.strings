@@ -85,3 +85,6 @@
 "MoveToAppStoreButton" = "Open in Store";
 "CancelUpdating" = "Cancel";
 "UrgeToUpdate" = "Please install the latest version from the App Store";
+
+//日付の表記法
+"CardViewModelDateFormat" = "MM/dd/yyyy";

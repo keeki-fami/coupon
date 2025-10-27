@@ -87,3 +87,5 @@
 "CancelUpdating" = "キャンセル";
 "UrgeToUpdate" = "AppStoreで最新版をインストールしてください。";
 
+//日付の表記法
+"CardViewModelDateFormat" = "yyyy/MM/dd";

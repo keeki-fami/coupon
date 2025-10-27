@@ -56,7 +56,7 @@ struct ContentView: View {
                             .fill(Color("EditViewBackgroundColor"))
                             .ignoresSafeArea(edges: .bottom)
                         
-                        HStack {
+                        HStack (){
                             Spacer()
                             Button(action: {
                                 selection = 0
@@ -67,6 +67,9 @@ struct ContentView: View {
                                 }
                                 .foregroundColor(selection == 0 ? .blue : .gray)
                             })
+                            .frame(width:100, height:50)
+                            // .border(.red)
+                            // MARK: 親ビューを同じ大きさで固定することで+ボタンを中央に表示
                             
                             Spacer()
                             
@@ -78,9 +81,13 @@ struct ContentView: View {
                                     Image(systemName: "plus.circle.fill")
                                         .resizable()
                                         .frame(width:50, height:50)
+                                        .layoutPriority(1.0)
                                 }
                                 .foregroundColor(.blue)
                             })
+                            .frame(width:100, height:50)
+                            // .border(.red)
+                            // MARK: 親ビューを同じ大きさで固定することで+ボタンを中央に表示
                             
                             Spacer()
                             
@@ -93,6 +100,9 @@ struct ContentView: View {
                                 }
                                 .foregroundColor(selection == 1 ? .blue : .gray)
                             })
+                            .frame(width:100, height:50)
+                            // .border(.red)
+                            // MARK: 親ビューを同じ大きさで固定することで+ボタンを中央に表示
                             
                             Spacer()
                         }

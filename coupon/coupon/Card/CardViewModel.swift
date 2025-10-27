@@ -8,7 +8,7 @@ import SwiftUI
 
 func dateToString(date: Date?) -> String? {
     let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy/MM/dd"
+    formatter.dateFormat = String(localized: "CardViewModelDateFormat")
     
     if let exactDate = date {
         return formatter.string(from:exactDate)
