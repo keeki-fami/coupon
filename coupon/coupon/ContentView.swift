@@ -131,7 +131,7 @@ struct ContentView: View {
                 }
                 
             }
-            .navigationTitle(selection == 0 ? "クーポン" : "情報")
+            .navigationTitle(selection == 0 ? String(localized: "CouponListViewTitle") : String(localized: "InfomationViewTitle"))
             .overlay(){
                 if isLoading {
                     LoadingView()

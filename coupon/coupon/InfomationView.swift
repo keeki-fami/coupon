@@ -21,7 +21,7 @@ struct InfomationView: View {
                     
                     VStack(spacing: 5){
                         HStack {
-                            Text("今月のクーポンの使用率...")
+                            Text(String(localized: "InfomationUseLabel"))
                             Spacer()
                         }
                         .padding(.horizontal)
@@ -34,7 +34,7 @@ struct InfomationView: View {
                     VStack(spacing: 5) {
                         
                         HStack() {
-                            Text("今月")
+                            Text(String(localized: "InfomationThisMonthLabel"))
                             Spacer()
                         }
                         .padding(.horizontal)
@@ -49,7 +49,7 @@ struct InfomationView: View {
                                     .bold()
                                     .padding()
                                 Spacer()
-                                Text("使用数")
+                                Text(String(localized: "InfomationNumberOfUse"))
                                     .padding()
                             }
                             .frame(
@@ -67,7 +67,7 @@ struct InfomationView: View {
                                     .bold()
                                     .padding()
                                 Spacer()
-                                Text("登録数")
+                                Text(String(localized: "InfomationNumberOfRegister"))
                                     .padding()
                             }
                             .frame(
@@ -85,7 +85,7 @@ struct InfomationView: View {
                     VStack(spacing: 5) {
                         
                         HStack() {
-                            Text("全体")
+                            Text(String(localized: "InfomationWholeLabel"))
                             Spacer()
                         }
                         .padding(.horizontal)
@@ -100,7 +100,7 @@ struct InfomationView: View {
                                     .bold()
                                     .padding()
                                 Spacer()
-                                Text("使用数")
+                                Text(String(localized: "InfomationNumberOfUse"))
                                     .padding()
                             }
                             .frame(
@@ -118,7 +118,7 @@ struct InfomationView: View {
                                     .bold()
                                     .padding()
                                 Spacer()
-                                Text("登録数")
+                                Text(String(localized: "InfomationNumberOfRegister"))
                                     .padding()
                             }
                             .frame(

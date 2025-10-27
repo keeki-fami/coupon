@@ -39,7 +39,7 @@ struct EditView: View {
                         
                         HStack{
                             
-                            Text("写真")
+                            Text(String(localized: "EditViewPhotoLabel"))
                             Spacer()
                         }
                         ZStack{
@@ -78,7 +78,7 @@ struct EditView: View {
                         
                         HStack{
                             
-                            Text("期限")
+                            Text(String(localized: "EditViewLimitLabel"))
                                 
                             Spacer()
                         }
@@ -108,10 +108,10 @@ struct EditView: View {
                         
                         HStack{
                             
-                            Text("会社名")
+                            Text(String(localized: "EditViewCompanyLabel"))
                             Spacer()
                         }
-                        TextField("会社名",text:$addCouponModel.companyName)
+                        TextField(String(localized: "EditViewCompanyLabel"),text:$addCouponModel.companyName)
                             .textFieldStyle(.plain)                // 縁なし
                             .padding(.horizontal)
                             .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)            // 幅いっぱい
@@ -123,10 +123,10 @@ struct EditView: View {
                         
                         HStack{
                             
-                            Text("クーポン名")
+                            Text(String(localized: "EditViewCouponLabel"))
                             Spacer()
                         }
-                        TextField("クーポン名",text:$addCouponModel.couponName)
+                        TextField(String(localized: "EditViewCouponLabel"),text:$addCouponModel.couponName)
                             .textFieldStyle(.plain)                // 縁なし
                             .padding(.horizontal)
                             .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)            // 幅いっぱい
@@ -162,33 +162,33 @@ struct EditView: View {
                         
                     }, label: {
                         
-                        Text("追加")
+                        Text(String(localized: "EditViewAddButton"))
                     })
                     .padding()
                     
                 }
-                .navigationTitle("編集")
+                .navigationTitle(String(localized: "EditViewTitle"))
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(
-                    leading:Button("キャンセル"){
+                    leading:Button(String(localized: "EditViewCancelButton")){
                         
                         isAlert = true
                     }
                 )
-                .alert("操作を中止しますか",isPresented: $isAlert) {
+                .alert(String(localized: "EditViewCancelAlert"),isPresented: $isAlert) {
                     
-                    Button("中止", role: .destructive) {
+                    Button(String(localized: "EditViewCancelLabel"), role: .destructive) {
                         
                         isEditView.isEdit = false
                     }
-                    Button("戻る", role: .cancel) {
+                    Button(String(localized: "EditViewBackLabel"), role: .cancel) {
                         
                         isAlert = false
                     }
                     
                 } message: {
                     
-                    Text("この操作は元に戻せません")
+                    Text(String(localized: "EditViewNotBackLabel"))
                 }
                 .onTapGesture{
                     

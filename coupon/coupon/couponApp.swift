@@ -43,18 +43,18 @@ struct couponApp: App {
                 .sheet(isPresented: $isIsFirstOpen) {
                     Explanation(isExplanation: $isIsFirstOpen)
                 }
-                .alert("最新版があります",isPresented: $isAppStore) {
-                    Button("移動") {
+                .alert(String(localized :"NewVersionNotificationLabel"),isPresented: $isAppStore) {
+                    Button(String(localized: "MoveToAppStoreButton")) {
                             if let url = URL(string: "https://apps.apple.com/jp/app/id6752533878"),
                                UIApplication.shared.canOpenURL(url) {
                                 UIApplication.shared.open(url)
                             }
                     }
-                    Button("キャンセル", role: .cancel) {
+                    Button(String(localized: "CancelUpdating"), role: .cancel) {
                         print("削除ボタンが押されました")
                     }
                 }message: {
-                    Text("AppStoreで最新版をインストールしてください。")
+                    Text(String(localized: "UrgeToUpdate"))
                 }
         }
     }

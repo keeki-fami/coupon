@@ -19,7 +19,7 @@ struct GoodView: View {
                         .stroke(.gray,lineWidth: 2)
                 )
                 
-            Text("Good!")
+            Text(String(localized: "Good1"))
                 .foregroundColor(.black)
         }
     }

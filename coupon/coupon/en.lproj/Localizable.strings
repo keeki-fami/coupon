@@ -5,6 +5,73 @@
   Created by 櫻田聖和 on 10/25/25.
   
 */
+// CouponListView
+"CouponListViewTitle" = "Coupon";
+"CouponListViewDescription_0" = "Let\'s add your coupon!";
+"CouponListViewDescription_1" = "1: Tap the \"Scan\" button at the bottom right of the screen.";
+"CouponListViewDescription_2-1" = "2: Tap";
+"CouponListViewDescription_2-2" = "button";
+"CouponListViewDescription_3" = "3: Take the picture to scan your coupon";
+"CouponListViewDescription_4" = "4: Enter the information to add your coupon";
+
+// CardView
+"CardViewDeleteAlert" = "Do you want to remove this coupon?";
+"CardViewDeleteButton" = "Delete";
+"CardViewCancelButton" = "Cancel";
+"CardViewCloseButton" = "Close";
+"CardViewOkayButton" = "Ok";
+"CardViewNotification" = "Notification";
+"CardViewWarningMessage" = "This action cannot be undone";
+"CardViewWillExpire" = "This coupon is about to expire";
+"CardViewLimitExpire" = "This is an expired coupon";
+"CardViewUsed" = "Set this coupon status to \"Used\"? ";
+"CardVierConfirm" = "Confirmation";
+
+//InfomationView
+"InfomationViewTitle" = "Infomation";
+"InfomationUseLabel" = "Coupon usage rate for this month";
+"InfomationThisMonthLabel" = "This month";
+"InfomationLastMonthLabel" = "Last month";
+"InfomationNumberOfUse" = "Number of uses";
+"InfomationNumberOfRegister" = "Registrations";
+"InfomationWholeLabel" = "Total";
+
+// EditView
+"EditViewPhotoLabel" = "photo";
+"EditViewLimitLabel" = "expiration date";
+"EditViewCompanyLabel" = "company name";
+"EditViewCouponLabel" = "coupon name";
+"EditViewAddButton" = "add";
+"EditViewCancelButton" = "Cancel";
+"EditViewTitle" = "Edit";
+"EditViewCancelAlert" = "Do you stop editing?";
+"EditViewCancelLabel" = "Cancel";
+"EditViewBackLabel" = "Back";
+"EditViewNotBackLabel" = "Your action cannot be undone";
+
+//bellView
+"bellViewLabel" = "Notification setting";
+"bellViewNowNotificationTimeLabel" = "Current notification time";
+"bellViewSelectTimeLabel" = "Select notification time";
+"bellViewSelectNotificationTimeLabel" = "Select notification date";
+"bellViewNotificationDay" = "day ago";
+"bellViewRegisterButton" = "Set";
+"bellViewDescription1" = "1.You will receive a notification at the set time";
+"bellViewDescription2" = "ex)if you set 12:00 and you add the coupon that expires on 15 September";
+"bellViewDescription3" = "→ You will receive a notification on September 14 at 12:00";
+"bellViewDescription4" = "2. This will apply to coupons added after you set it";
+"bellViewDescription5" = "This will not apply to coupon added before you set it";
+"bellViewDescription6" = "\"one day before\" and \"00:00\" will be applied at the first launch";
+"bellViewNotificationButton" = "Notification";
+"bellViewOkayButton" = "OK";
+"bellViewSettiongCompleteLabel" = "The notification time has been successfully set";
+
+//GoodView
+"Good1" = "Good!";
+"Good2" = "その調子！";
+"Good3" = "すごい！";
+
+//CalendarDateView
 "CalendarDateViewOneDayBefore" = "one day ago";
 "CalendarDateViewTwoDayBefore" = "two days ago";
 "CalendarDateViewThreeDayBefore" = "three days ago";
@@ -12,3 +79,9 @@
 "CalendarDateViewFiveDayBefore" = "five days ago";
 "CalendarDateViewSixDayBefore" = "six days ago";
 "CalendarDateViewSevenDayBefore" = "seven days ago";
+
+//AppStoreに最新版が公開された時（couponApp.swift）
+"NewVersionNotificationLabel" = "A new version is available";
+"MoveToAppStoreButton" = "Open in Store";
+"CancelUpdating" = "Cancel";
+"UrgeToUpdate" = "Please install the latest version from the App Store";

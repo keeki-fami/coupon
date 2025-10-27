@@ -25,6 +25,7 @@
 "CardViewWillExpire" = "このクーポンはあともう少しで期限が切れます";
 "CardViewLimitExpire" = "このクーポンは既に期限が切れています";
 "CardViewUsed" = "このクーポンを\"使用済み\"にしますか";
+"CardVierConfirm" = "確認";
 
 //InfomationView
 "InfomationViewTitle" = "情報";

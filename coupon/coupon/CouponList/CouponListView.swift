@@ -38,20 +38,20 @@ struct CouponListView: View {
                         }
                     }
                 } else {
-                    Text("クーポンを追加しましょう")
+                    Text(String(localized: "CouponListViewDescription_0"))
                         .foregroundStyle(.gray)
                         .padding()
-                    Text("1:画面右下の「scan」をタップ")
+                    Text(String(localized: "CouponListViewDescription_1"))
                         .foregroundStyle(.gray)
                     HStack{
-                        Text("2:")
+                        Text(String(localized: "CouponListViewDescription_2-1"))
                         Text(Image(systemName: "camera"))
-                        Text("をタップ")
+                        Text(String(localized: "CouponListViewDescription_2-2"))
                     }
                         .foregroundStyle(.gray)
-                    Text("3: 写真を撮ってクーポンをスキャン")
+                    Text(String(localized: "CouponListViewDescription_3"))
                         .foregroundStyle(.gray)
-                    Text("4: 情報を入力して追加完了")
+                    Text(String(localized: "CouponListViewDescription_4"))
                         .foregroundStyle(.gray)
                     // BannerViewContainer(adSize)
                       // .frame(width: adSize.size.width, height: adSize.size.height)
