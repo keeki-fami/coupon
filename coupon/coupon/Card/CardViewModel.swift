@@ -1,9 +1,4 @@
-//
-//  CardViewModel.swift
-//  coupon
-//
-//  Created by 桜田聖和 on 2025/09/07.
-//
+
 import SwiftUI
 
 func dateToString(date: Date?) -> String? {

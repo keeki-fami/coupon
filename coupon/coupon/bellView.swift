@@ -1,9 +1,3 @@
-//
-//  bellView.swift
-//  coupon
-//
-//  Created by 桜田聖和 on 2025/09/14.
-//
 
 import SwiftUI
 
@@ -109,7 +103,7 @@ struct BellView: View {
                                         .shadow(color: .gray.opacity(0.3),radius:5)
                                     HStack{
                                         Spacer()
-                                        Text("\(String(nowCallDay))" + String(localized: "bellViewNotificationDay"))
+                                        Text("\(String(nowCallDay))" + (nowCallDay == 1 ? String(localized: "bellViewNotificationDay_ForOne") : String(localized: "bellViewNotificationDay")))
                                         Spacer()
                                     }
                                 }

@@ -1,9 +1,4 @@
-//
-//  InfomationView.swift
-//  coupon
-//
-//  Created by 櫻田聖和 on 9/19/25.
-//
+
 
 import SwiftUI
 

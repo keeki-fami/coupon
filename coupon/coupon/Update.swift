@@ -1,9 +1,4 @@
-//
-//  Update.swift
-//  coupon
-//
-//  Created by 櫻田聖和 on 9/22/25.
-//
+
 
 import SwiftUI
 

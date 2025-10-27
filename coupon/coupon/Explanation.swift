@@ -1,9 +1,4 @@
-//
-//  Explanation.swift
-//  coupon
-//
-//  Created by 櫻田聖和 on 9/23/25.
-//
+
 
 import SwiftUI
 

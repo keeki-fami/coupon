@@ -1,10 +1,4 @@
-/* 
-  Localizable.strings
-  coupon
 
-  Created by 櫻田聖和 on 10/25/25.
-  
-*/
 // CouponListView
 "CouponListViewTitle" = "クーポン";
 "CouponListViewDescription_0" = "クーポンを追加しましょう";
@@ -55,6 +49,7 @@
 "bellViewSelectTimeLabel" = "時間を選択";
 "bellViewSelectNotificationTimeLabel" = "通知日を選択";
 "bellViewNotificationDay" = "日前";
+"bellViewNotificationDay_ForOne" = "日前";
 "bellViewRegisterButton" = "登録";
 "bellViewDescription1" = "1.設定した時間に通知が送信されます。";
 "bellViewDescription2" = "例：12:00で登録";

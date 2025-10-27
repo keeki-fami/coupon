@@ -1,10 +1,91 @@
-/* 
-  Localizable.strings
-  coupon
 
-  Created by 櫻田聖和 on 10/25/25.
-  
-*/
+//"CouponListViewTitle" = "优惠券";
+//"CouponListViewDescription_0" = "追加优惠券!";
+//"CouponListViewDescription_1" = "1:点击屏幕右下角的\"扫描\"";
+//"CouponListViewDescription_2-1" = "2:点击";
+//"CouponListViewDescription_2-2" = "";
+//"CouponListViewDescription_3" = "3: 拍照并扫描优惠券";
+//"CouponListViewDescription_4" = "4: 输入信息后，添加就完成了";
+//
+//// CardView
+//"CardViewDeleteAlert" = "您要删除此优惠券吗？";
+//"CardViewDeleteButton" = "删除";
+//"CardViewCancelButton" = "取消";
+//"CardViewCloseButton" = "关闭";
+//"CardViewOkayButton" = "好的";
+//"CardViewNotification" = "通知";
+//"CardViewWarningMessage" = "此操作无法撤消";
+//"CardViewWillExpire" = "此优惠券即将过期";
+//"CardViewLimitExpire" = "此优惠券已过期";
+//"CardViewUsed" = "您想将此优惠券标记为“已使用”吗？";
+//"CardVierConfirm" = "确认";
+//
+////InfomationView
+//"InfomationViewTitle" = "信息";
+//"InfomationUseLabel" = "本月优惠券使用率...";
+//"InfomationThisMonthLabel" = "本月";
+//"InfomationLastMonthLabel" = "上个月";
+//"InfomationNumberOfUse" = "使用次数";
+//"InfomationNumberOfRegister" = "注册数量";
+//"InfomationWholeLabel" = "所有的";
+//
+//// EditView
+//"EditViewPhotoLabel" = "照片";
+//"EditViewLimitLabel" = "期限";
+//"EditViewCompanyLabel" = "公司名";
+//"EditViewCouponLabel" = "优惠券的名称";
+//"EditViewAddButton" = "追加";
+//"EditViewCancelButton" = "キャンセル";
+//"EditViewTitle" = "編集";
+//"EditViewCancelAlert" = "操作を中止しますか";
+//"EditViewCancelLabel" = "中止";
+//"EditViewBackLabel" = "戻る";
+//"EditViewNotBackLabel" = "この操作は元に戻せません";
+//
+////bellView
+//"bellViewLabel" = "通知設定";
+//"bellViewNowNotificationTimeLabel" = "現在の通知時間";
+//"bellViewSelectTimeLabel" = "時間を選択";
+//"bellViewSelectNotificationTimeLabel" = "通知日を選択";
+//"bellViewNotificationDay" = "日前";
+//"bellViewNotificationDay_ForOne" = "日前";
+//"bellViewRegisterButton" = "登録";
+//"bellViewDescription1" = "1.設定した時間に通知が送信されます。";
+//"bellViewDescription2" = "例：12:00で登録";
+//"bellViewDescription3" = "9月15日期限　→ 9月14日12:00に通知";
+//"bellViewDescription4" = "2. 設定後に登録されたクーポンに適用されます。";
+//"bellViewDescription5" = "設定前に登録されたクーポンには適用されません。";
+//"bellViewDescription6" = "初回起動時には「1日前 00:00」が適用されます。";
+//"bellViewNotificationButton" = "通知";
+//"bellViewOkayButton" = "OK";
+//"bellViewSettiongCompleteLabel" = "通知時間の設定が完了しました";
+//
+////GoodView
+//"Good1" = "いいね！";
+//"Good2" = "その調子！";
+//"Good3" = "すごい！";
+//
+////CalendarDateView
+//"CalendarDateViewOneDayBefore" = "1日前";
+//"CalendarDateViewTwoDayBefore" = "2日前";
+//"CalendarDateViewThreeDayBefore" = "3日前";
+//"CalendarDateViewFourDayBefore" = "4日前";
+//"CalendarDateViewFiveDayBefore" = "5日前";
+//"CalendarDateViewSixDayBefore" = "6日前";
+//"CalendarDateViewSevenDayBefore" = "7日前";
+//
+//
+////AppStoreに最新版が公開された時（couponApp.swift）
+//"NewVersionNotificationLabel" = "最新版があります";
+//"MoveToAppStoreButton" = "移動";
+//"CancelUpdating" = "キャンセル";
+//"UrgeToUpdate" = "AppStoreで最新版をインストールしてください。";
+//
+////日付の表記法
+//"CardViewModelDateFormat" = "yyyy/MM/dd";
+
+
+// CouponListView
 "CouponListViewTitle" = "Coupon";
 "CouponListViewDescription_0" = "Let\'s add your coupon!";
 "CouponListViewDescription_1" = "1: Tap the \"Scan\" button at the bottom right of the screen.";
@@ -53,7 +134,8 @@
 "bellViewNowNotificationTimeLabel" = "Current notification time";
 "bellViewSelectTimeLabel" = "Select notification time";
 "bellViewSelectNotificationTimeLabel" = "Select notification date";
-"bellViewNotificationDay" = "day ago";
+"bellViewNotificationDay" = "days ago";
+"bellViewNotificationDay_ForOne" = "day ago";
 "bellViewRegisterButton" = "Set";
 "bellViewDescription1" = "1.You will receive a notification at the set time";
 "bellViewDescription2" = "ex)if you set 12:00 and you add the coupon that expires on 15 September";
@@ -84,3 +166,6 @@
 "MoveToAppStoreButton" = "Open in Store";
 "CancelUpdating" = "Cancel";
 "UrgeToUpdate" = "Please install the latest version from the App Store";
+
+//日付の表記法
+"CardViewModelDateFormat" = "MM/dd/yyyy";
