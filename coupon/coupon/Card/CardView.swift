@@ -185,7 +185,7 @@ struct cardView: View{
             }
         }
         .alert(String(localized: "CardViewDeleteAlert"),isPresented: $isAlert) {
-            Button("削除", role: .destructive) {
+            Button(String(localized: "CardViewDeleteButton"), role: .destructive) {
                 deleteCard()
                 if let couponid = couponId {
                     print("クーポンID\(couponid)を削除しました。")

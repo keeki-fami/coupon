@@ -14,7 +14,7 @@ struct couponApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     let persistenceController = PersistenceController.shared
     @AppStorage("isInitCompanyList") private var isInitCompanyList = false
-    @State private var isAppStore = false
+    @State private var isAppStore = false // test
     @AppStorage("isFirstOpen") private var isFirstOpen = true
     @State private var isIsFirstOpen = false
     
@@ -33,11 +33,15 @@ struct couponApp: App {
                     let update = Update()
                     update.fetchLatestVersion {
                         let result = update.compareVersion()
-                        if result {
-                            isAppStore = true
-                        } else {
-                            isAppStore = false
-                        }
+                        print("試行しました")
+                            if result && !isIsFirstOpen{
+                                isAppStore = true
+                            } else {
+                                // MARK: test
+                                isAppStore = false
+                            }
+                        
+                        print("\(isAppStore)")
                     }
                 }
                 .sheet(isPresented: $isIsFirstOpen) {
