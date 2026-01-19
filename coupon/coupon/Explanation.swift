@@ -49,5 +49,6 @@ struct Explanation: View {
             }
             .tabViewStyle(PageTabViewStyle())
         }
+        .interactiveDismissDisabled()
     }
 }
