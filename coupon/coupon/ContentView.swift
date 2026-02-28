@@ -56,7 +56,7 @@ struct ContentView: View {
                             .fill(Color("EditViewBackgroundColor"))
                             .ignoresSafeArea(edges: .bottom)
                         
-                        HStack {
+                        HStack (){
                             Spacer()
                             Button(action: {
                                 selection = 0
@@ -67,6 +67,9 @@ struct ContentView: View {
                                 }
                                 .foregroundColor(selection == 0 ? .blue : .gray)
                             })
+                            .frame(width:100, height:50)
+                            // .border(.red)
+                            // MARK: 親ビューを同じ大きさで固定することで+ボタンを中央に表示
                             
                             Spacer()
                             
@@ -78,9 +81,13 @@ struct ContentView: View {
                                     Image(systemName: "plus.circle.fill")
                                         .resizable()
                                         .frame(width:50, height:50)
+                                        .layoutPriority(1.0)
                                 }
                                 .foregroundColor(.blue)
                             })
+                            .frame(width:100, height:50)
+                            // .border(.red)
+                            // MARK: 親ビューを同じ大きさで固定することで+ボタンを中央に表示
                             
                             Spacer()
                             
@@ -93,6 +100,9 @@ struct ContentView: View {
                                 }
                                 .foregroundColor(selection == 1 ? .blue : .gray)
                             })
+                            .frame(width:100, height:50)
+                            // .border(.red)
+                            // MARK: 親ビューを同じ大きさで固定することで+ボタンを中央に表示
                             
                             Spacer()
                         }
@@ -131,7 +141,7 @@ struct ContentView: View {
                 }
                 
             }
-            .navigationTitle(selection == 0 ? "クーポン" : "情報")
+            .navigationTitle(selection == 0 ? String(localized: "CouponListViewTitle") : String(localized: "InfomationViewTitle"))
             .overlay(){
                 if isLoading {
                     LoadingView()
@@ -145,29 +155,6 @@ struct ContentView: View {
             }
             .onAppear() {
                 judgeMonth()
-                
-                let update = Update()
-                update.fetchLatestVersion {
-                    let result = update.compareVersion()
-                    if result {
-                        isAppStore = true
-                    } else {
-                        isAppStore = false
-                    }
-                }
-            }
-            .alert("最新版があります",isPresented: $isAppStore) {
-                Button("移動") {
-                        if let url = URL(string: "https://apps.apple.com/jp/app/id6752533878"),
-                           UIApplication.shared.canOpenURL(url) {
-                            UIApplication.shared.open(url)
-                        }
-                }
-                Button("キャンセル", role: .cancel) {
-                    print("削除ボタンが押されました")
-                }
-            }message: {
-                Text("AppStoreで最新版をインストールしてください。")
             }
         }
         

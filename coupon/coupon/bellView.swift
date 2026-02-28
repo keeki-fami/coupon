@@ -1,9 +1,3 @@
-//
-//  bellView.swift
-//  coupon
-//
-//  Created by 桜田聖和 on 2025/09/14.
-//
 
 import SwiftUI
 
@@ -26,7 +20,7 @@ struct BellView: View {
                     
                     Spacer()
                     
-                    Text("現在の通知時間")
+                    Text(String(localized: "bellViewNowNotificationTimeLabel"))
                     VStack(spacing:5){
                         Text("\(String(format: "%02d",nowHour)):\(String(format: "%02d", nowMinute))" )
                     }
@@ -46,7 +40,7 @@ struct BellView: View {
                         },label: {
                             VStack(spacing:5){
                                 HStack{
-                                    Text("時間を選択")
+                                    Text(String(localized: "bellViewSelectTimeLabel"))
                                     Spacer()
                                 }
                                 
@@ -98,7 +92,7 @@ struct BellView: View {
                         },label: {
                             VStack(spacing:5){
                                 HStack{
-                                    Text("通知日を選択")
+                                    Text(String(localized: "bellViewSelectNotificationTimeLabel"))
                                     Spacer()
                                 }
                                 
@@ -109,7 +103,7 @@ struct BellView: View {
                                         .shadow(color: .gray.opacity(0.3),radius:5)
                                     HStack{
                                         Spacer()
-                                        Text("\(String(nowCallDay))日前")
+                                        Text("\(String(nowCallDay))" + (nowCallDay == 1 ? String(localized: "bellViewNotificationDay_ForOne") : String(localized: "bellViewNotificationDay")))
                                         Spacer()
                                     }
                                 }
@@ -131,7 +125,7 @@ struct BellView: View {
                     
                     
                     
-                    Button("登録") {
+                    Button(String(localized: "bellViewRegisterButton")) {
                         
                         isNotify = true
                         let calendar = Calendar.current
@@ -142,7 +136,7 @@ struct BellView: View {
                         nowMinute = minute
                         
                     }
-                    .navigationTitle("通知設定")
+                    .navigationTitle(String(localized: "bellViewLabel"))
                     
                     Spacer()
                     
@@ -153,17 +147,17 @@ struct BellView: View {
                         VStack(){
                             VStack(spacing:5){
                                 HStack{
-                                    Text("1. 設定した時間に通知が送信されます。")
+                                    Text(String(localized: "bellViewDescription1"))
                                     Spacer()
                                 }
                                 .padding(.horizontal)
                                 HStack{
-                                    Text("例：12:00で登録")
+                                    Text(String(localized: "bellViewDescription2"))
                                     Spacer()
                                 }
                                 .padding(.horizontal)
                                 HStack{
-                                    Text("9月15日期限　→ 9月14日12:00に通知")
+                                    Text(String(localized: "bellViewDescription3"))
                                     Spacer()
                                 }
                                 .padding(.horizontal)
@@ -171,17 +165,17 @@ struct BellView: View {
                             .padding(.vertical)
                             VStack(spacing:5){
                                 HStack{
-                                    Text("2. 設定後に登録されたクーポンに適用されます。")
+                                    Text(String(localized: "bellViewDescription4"))
                                     Spacer()
                                 }
                                 .padding(.horizontal)
                                 HStack{
-                                    Text("設定前に登録されたクーポンには適用されません。")
+                                    Text(String(localized: "bellViewDescription5"))
                                     Spacer()
                                 }
                                 .padding(.horizontal)
                                 HStack{
-                                    Text("初回起動時には「1日前 00:00」が適用されます。")
+                                    Text(String(localized: "bellViewDescription6"))
                                     Spacer()
                                 }
                                 .padding(.horizontal)
@@ -194,12 +188,12 @@ struct BellView: View {
                     .foregroundColor(.gray)
                     .frame(height:geometry.size.height * 0.5)
                 }
-                .alert("通知",isPresented: $isNotify) {
-                    Button("OK", role: .cancel) {
+                .alert(String(localized: "bellViewNotificationButton"),isPresented: $isNotify) {
+                    Button(String(localized: "bellViewOkayButton"), role: .cancel) {
                         print("削除ボタンが押されました")
                     }
                 }message: {
-                    Text("通知時間の設定が完了しました")
+                    Text(String(localized: "bellViewSettiongCompleteLabel"))
                 }
             }
         }

@@ -1,12 +1,7 @@
-//
-//  CouponListView.swift
-//  coupon
-//
-//  Created by 桜田聖和 on 2025/08/30.
-//
 
 import CoreData
 import SwiftUI
+
 
 struct CouponListView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -14,6 +9,7 @@ struct CouponListView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \CardModel.limit, ascending: true)],
         animation: .default
     ) private var coupons: FetchedResults<CardModel>
+    
     
     var body: some View {
         // NavigationStack{
@@ -36,22 +32,23 @@ struct CouponListView: View {
                         }
                     }
                 } else {
-                    Text("クーポンを追加しましょう")
+                    Text(String(localized: "CouponListViewDescription_0"))
                         .foregroundStyle(.gray)
                         .padding()
-                    Text("1:画面右下の「scan」をタップ")
+                    Text(String(localized: "CouponListViewDescription_1"))
                         .foregroundStyle(.gray)
                     HStack{
-                        Text("2:")
+                        Text(String(localized: "CouponListViewDescription_2-1"))
                         Text(Image(systemName: "camera"))
-                        Text("をタップ")
+                        Text(String(localized: "CouponListViewDescription_2-2"))
                     }
                         .foregroundStyle(.gray)
-                    Text("3: 写真を撮ってクーポンをスキャン")
+                    Text(String(localized: "CouponListViewDescription_3"))
                         .foregroundStyle(.gray)
-                    Text("4: 情報を入力して追加完了")
+                    Text(String(localized: "CouponListViewDescription_4"))
                         .foregroundStyle(.gray)
-                    
+                    // BannerViewContainer(adSize)
+                      // .frame(width: adSize.size.width, height: adSize.size.height)
                 }
                 
             }

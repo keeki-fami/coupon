@@ -1,9 +1,4 @@
-//
-//  InfomationView.swift
-//  coupon
-//
-//  Created by 櫻田聖和 on 9/19/25.
-//
+
 
 import SwiftUI
 
@@ -12,7 +7,7 @@ struct InfomationView: View {
     @State private var allInMonth = 0
     @State private var usedInAll = 0
     @State private var allInAll = 0
-    @State private var percent = 0
+    @State private var percent = 0.0
     var body: some View {
         GeometryReader { geometry in
              ScrollView {
@@ -21,11 +16,11 @@ struct InfomationView: View {
                     
                     VStack(spacing: 5){
                         HStack {
-                            Text("今月のクーポンの使用率...")
+                            Text(String(localized: "InfomationUseLabel"))
                             Spacer()
                         }
                         .padding(.horizontal)
-                        Text("\(String(percent))%")
+                        Text("\(String(Int(percent * 100)))%")
                             .font(.system(size: 40))
                             .bold()
                             .padding()
@@ -34,7 +29,7 @@ struct InfomationView: View {
                     VStack(spacing: 5) {
                         
                         HStack() {
-                            Text("今月")
+                            Text(String(localized: "InfomationThisMonthLabel"))
                             Spacer()
                         }
                         .padding(.horizontal)
@@ -49,7 +44,7 @@ struct InfomationView: View {
                                     .bold()
                                     .padding()
                                 Spacer()
-                                Text("使用数")
+                                Text(String(localized: "InfomationNumberOfUse"))
                                     .padding()
                             }
                             .frame(
@@ -67,7 +62,7 @@ struct InfomationView: View {
                                     .bold()
                                     .padding()
                                 Spacer()
-                                Text("登録数")
+                                Text(String(localized: "InfomationNumberOfRegister"))
                                     .padding()
                             }
                             .frame(
@@ -85,7 +80,7 @@ struct InfomationView: View {
                     VStack(spacing: 5) {
                         
                         HStack() {
-                            Text("全体")
+                            Text(String(localized: "InfomationWholeLabel"))
                             Spacer()
                         }
                         .padding(.horizontal)
@@ -100,7 +95,7 @@ struct InfomationView: View {
                                     .bold()
                                     .padding()
                                 Spacer()
-                                Text("使用数")
+                                Text(String(localized: "InfomationNumberOfUse"))
                                     .padding()
                             }
                             .frame(
@@ -118,7 +113,7 @@ struct InfomationView: View {
                                     .bold()
                                     .padding()
                                 Spacer()
-                                Text("登録数")
+                                Text(String(localized: "InfomationNumberOfRegister"))
                                     .padding()
                             }
                             .frame(
@@ -143,7 +138,7 @@ struct InfomationView: View {
                 allInAll = UserDefaults.standard.integer(forKey: "allInAll")
                 
                 if allInMonth > 0 {
-                    percent = (usedInMonth / allInMonth) as Int
+                    percent = Double(usedInMonth) / Double(allInMonth)
                 }
                 
             }

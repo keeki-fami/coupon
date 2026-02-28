@@ -1,9 +1,4 @@
-//
-//  GoodView.swift
-//  coupon
-//
-//  Created by 櫻田聖和 on 9/19/25.
-//
+
 
 import SwiftUI
 
@@ -19,7 +14,7 @@ struct GoodView: View {
                         .stroke(.gray,lineWidth: 2)
                 )
                 
-            Text("Good!")
+            Text(String(localized: "Good1"))
                 .foregroundColor(.black)
         }
     }

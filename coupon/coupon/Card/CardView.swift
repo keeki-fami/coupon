@@ -184,8 +184,8 @@ struct cardView: View{
                 Spacer()
             }
         }
-        .alert("このクーポンを削除しますか",isPresented: $isAlert) {
-            Button("削除", role: .destructive) {
+        .alert(String(localized: "CardViewDeleteAlert"),isPresented: $isAlert) {
+            Button(String(localized: "CardViewDeleteButton"), role: .destructive) {
                 deleteCard()
                 if let couponid = couponId {
                     print("クーポンID\(couponid)を削除しました。")
@@ -193,29 +193,29 @@ struct cardView: View{
                 }
 
             }
-            Button("キャンセル", role: .cancel) {
+            Button(String(localized: "CardViewCancelButton"), role: .cancel) {
                 print("削除ボタンが押されました")
             }
         }message: {
-            Text("この操作は取り消せません")
+            Text(String(localized: "CardViewWarningMessage"))
         }
-        .alert("通知",isPresented: $isWarning) {
-            Button("閉じる", role: .cancel) {
+        .alert(String(localized: "CardViewNotification" ),isPresented: $isWarning) {
+            Button(String(localized: "CardViewCloseButton"), role: .cancel) {
                 print("削除ボタンが押されました")
             }
         }message: {
-            Text("このクーポンはあともう少しで期限が切れます")
+            Text(String(localized: "CardViewWillExpire"))
         }
-        .alert("通知",isPresented: $isX) {
-            Button("閉じる", role: .cancel) {
+        .alert(String(localized: "CardViewNotification"),isPresented: $isX) {
+            Button(String(localized: "CardViewCloseButton"), role: .cancel) {
                 print("削除ボタンが押されました")
             }
         }message: {
-            Text("このクーポンは既に期限が切れています")
+            Text(String(localized: "CardViewLimitExpire"))
         }
         
-        .alert("確認", isPresented: $isCheck) {
-            Button("OK", role: .destructive) {
+        .alert(String(localized: "CardVierConfirm"), isPresented: $isCheck) {
+            Button(String(localized: "CardViewOkayButton"), role: .destructive) {
                 Task {
                     UINFGenerator.notificationOccurred(.success)
                     deleteCard()
@@ -223,11 +223,11 @@ struct cardView: View{
                     await updateCardUsed()
                 }
             }
-            Button("キャンセル", role: .cancel){
+            Button(String(localized: "CardViewCancelButton"), role: .cancel){
                 print("キャンセルが押されました。")
             }
         }message: {
-            Text("このクーポンを\"使用済み\"にしますか")
+            Text(String(localized: "CardViewUsed"))
         }
     }
     func popupGoodView() {

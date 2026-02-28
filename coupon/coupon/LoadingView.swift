@@ -1,9 +1,3 @@
-//
-//  LoadingView.swift
-//  coupon
-//
-//  Created by 櫻田聖和 on 9/18/25.
-//
 
 import SwiftUI
 
