@@ -4,6 +4,7 @@
 //
 //  Created by 櫻田聖和 on 9/20/25.
 //
+// ci/cd
 
 import SwiftUI
 
