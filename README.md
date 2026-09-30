@@ -1,16 +1,52 @@
-# coupon holder
-## 🔗リンク
-- note : https://note.com/towa57035260/n/nc8c47dfac8e1
-- test : https://testflight.apple.com/join/q1jfF9dU
-## ⚠️注意！！
-- 現在AppStoreConnectにて申請中です。（申請日：9/20 3:58）
-## 制作意図
-- コンビニでせっかくクーポンをもらったのに、忘れていたり期限がきれていたりなどで無駄にしてしまった経験から、スマホなど普段使うもので詳細を管理し、期限が迫ったら通知してくれるようなアプリが欲しいと思い制作を始めました。
-## 使用技術（現時点）
-言語：Swift  
-環境：XCode  
-フレームワーク：SwiftUI  
-ライブラリ：Vision,VisionKit,CropViewController  
-永続データの保存方法：CoreData  
-## 画像
-<img width="300" height="630" alt="IMG_3897" src="https://github.com/user-attachments/assets/702b149b-6da8-46ab-b357-3dc79e5f07ae" /> <img width="300" height="630" alt="IMG_3896" src="https://github.com/user-attachments/assets/77f5d8b8-4834-4caa-b1d4-f66e841215cf" /> <img width="300" height="630" alt="IMG_3898" src="https://github.com/user-attachments/assets/34e17102-7b55-40f9-8f40-06c72002656f" />
+<h1 align="center"> Coupon Holder </h1> <br>
+
+<p align="center">
+	<a href="https://apps.apple.com/jp/app/coupon-holder/id6752533878">
+		<img alt="Coupon Holder" src="./images/coupon.png" title="Coupon Holder" width="200">
+	</a>
+</p>
+
+<p align="center">
+	Never forget a coupon. Never miss a deal.
+</p>
+
+## Link
+- [AppStore](https://apps.apple.com/jp/app/coupon-holder/id6752533878)
+- [note](https://note.com/towa57035260/n/nc8c47dfac8e1?magazine_key=mf449bedc9207)
+
+## Overview
+
+Keep your coupons organized, track their expiration dates, and get reminded before they expire. Coupon Holder makes it easy to manage your coupons in one place, so you can use them before it's too late.
+
+## Features
+
+* 📸 **Easy Coupon Registration** — Register coupons by taking a photo and reduce the hassle of entering information manually.
+* 📅 **Expiration Date Tracking** — Keep track of your coupons and quickly see which ones are expiring soon.
+* 🔔 **Expiration Reminders** — Get notified when your coupons are approaching their expiration dates.
+* 👀 **Expiration Status** — Easily distinguish between active, expiring soon, and expired coupons.
+* 💾 **Local Data Storage** — Keep your coupon information stored on your device for quick and convenient access.
+* 📱 **Native Swift App** — Built natively with Swift and SwiftUI for a smooth and responsive experience.
+
+## Installation
+
+```bash
+# Clone repository
+git clone https://github.com/keeki-fami/coupon.git
+cd coupon
+
+# Open in Xcode
+open coupon.xcodeproj
+
+# Build and run (⌘+R)
+```
+
+## Requirement
+
+* iOS: 17.6+
+
+## Feedback
+
+Feedback is always welcome! Feel free to reach out to me by email or on X.
+
+* Email : [keekiapp.feedback@gmail.com](mailto:keekiapp.feedback@gmail.com)
+* X : [@Keeki_factory](https://x.com/keeki_factory?s=11)
